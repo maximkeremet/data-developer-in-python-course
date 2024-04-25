@@ -1,0 +1,1099 @@
+
+<!DOCTYPE html>
+
+
+<html lang="ru" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Циклы в Python &#8212; Data разработка на Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=576a2c22"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=29b1f277"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_python_101/04_loops';</script>
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Функции в Python" href="05_functions.html" />
+    <link rel="prev" title="Условные конструкции" href="03_conditional_statements.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ru"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Перейти к основному содержанию</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo2.svg" class="logo__image only-light" alt="Data разработка на Python - Home"/>
+    <script>document.write(`<img src="../_static/logo2.svg" class="logo__image only-dark" alt="Data разработка на Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Поиск" aria-label="Поиск" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Поиск</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Приветствие курса
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python 101</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_interpreter.html">Об интерпретаторе Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_structures_basic.html">Базовые типы данных</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="02_data_structures_complex.html">Составные структуры данных в Python</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="03_conditional_statements.html">Условные конструкции</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Циклы в Python</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="05_functions.html">Функции в Python</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_installing_ide_tools.html">Устанавливаем IDE</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="07_virtualenv_and_poetry.html">Виртуальные окружения в Python и управление зависимостями с помощью Poetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_oop.html">Концепция объектно-ориентированного программирования (ООП) в Python</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/maximkeremet/tinkoff-python-course/blob/main/book/01_python_101/04_loops.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/maximkeremet/tinkoff-python-course/edit/main/book/01_python_101/04_loops.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/maximkeremet/tinkoff-python-course/issues/new?title=Issue%20on%20page%20%2F01_python_101/04_loops.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Открыть вопрос"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Загрузите эту страницу">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/01_python_101/04_loops.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Скачать исходный файл"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Распечатать в PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Полноэкранный режим"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="светлая/темная" aria-label="светлая/темная" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Поиск" aria-label="Поиск" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Циклы в Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Содержание </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Циклы в Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Исследование циклов в Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#for">Цикл <code class="docutils literal notranslate"><span class="pre">for</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Вложенность цикла</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#range">Функция <code class="docutils literal notranslate"><span class="pre">range()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#while">Цикл <code class="docutils literal notranslate"><span class="pre">while</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#break-continue">Операторы <code class="docutils literal notranslate"><span class="pre">break</span></code> и <code class="docutils literal notranslate"><span class="pre">continue</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Заключение</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python">
+<h1>Циклы в Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h1>
+<p>Цели материала:</p>
+<ul class="simple">
+<li><p>Познакомиться с циклами в Python.</p></li>
+<li><p>Изучить, как работать со списками и словарями в цикле.</p></li>
+<li><p>Изучить, как работать в связке цикл + функции.</p></li>
+<li><p>Изучить, как выглядят вложенные циклы.</p></li>
+<li><p>Изучить, как останавливать цикл и пропускать итерацию в цикле.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Исследование циклов в Python<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Циклы — важный элемент программирования. Они позволяют выполнять один и тот же код несколько раз в зависимости от определённых условий.</p>
+<p>Допусим, у тебя есть программа, которая должна проверить, является ли число чётным или нечётным. Циклы помогут автоматизировать этот процесс и выполнить проверку для разных значений. В Python существуют разные виды циклов.</p>
+<p><img alt="циклы.png" src="data:image/png;base64,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8dhuu+3CiSeeGIYMGRKmnXbasOuuu4avv/7anekqBHqFgJRAr+CT494i8Oijj4Y333zTvLn44osDjTtmiL9jKmW99dYLNPIHH3ywveN+/PHHDwcccIBNLd17772BqZcPP/ww3HPPPWYn/VfLHLfHHXdcOPTQQ8ODDz4YDj/88LTTqnumhYgPDfoZZ5xh4a200kphrrnmsme3zBTQHHPMEfbbbz8zGj58uDXuPFxwwQWWjrXWWitss802Fu/HHnssrL/++qbAbr755vDVV1+FzTbbLKAYGWnssssuNqLAvxNOOCHccccdHpSuQqBXCIzdK9dyLAT6CIH333/fevmrrrpq+OyzzxJfaXA33HBDa3hvuOGGpCFlgXXOOec05cAoIS00+PTOmb+faaaZzF76ffae3vzSSy9tjTH2X3nllayV5Jn4uTAiQGHMM888FsdDDjnEpooIl0aaxnrGGWc060sssURgPQChV7/KKquElVde2eywRoDyW3LJJcOxxx5rdo4++mjzF2WHjBgxImy55ZZ2jxJ5+umnw4orrmjP+hMCvUFASqA36MltnyFAL3yZZZaxnjCNnIsvIDPVMtlkk7lxoOGffPLJk+fsDY0myoRePr3wFVZYIWsleUZp0HC7HHPMMX472vXCCy8Miy22mJnPPPPMYZxxxrH7wYMHh9lmmy1cf/31Ycwxx7SRwYILLhjeeeed0fwYNGiQmU088cR2ZQTzzDPPhKWWWiqxO8sss9i9j5IIy4UpKdxIhEBfICAl0Bcoyo9eIfDQQw+Fk08+OTz//PPWiKY9Yx1ggQUWsGmTRRdd1O55/+qrr4b5558/bTW5p2d/++232/Pll18eNt544zBy5MjkffYG+zTWzLNfe+21gXl8FnwnmmiirFUbWTCXnydbb711uPLKK00JsLZRJGONNdZor0gjOLjQ00c8jWOPrarq2OjatwioZPUtnvItgwDTOcx3p4WdMuONN154++23zRgFcMQRRwTv/abtMt9Og/z4448H5tBpKJkvv+mmm8IWW2yRtlp1/8UXX5i9J5980hZyq17mPHzzzTemBHzBleeeCtNWjDoQRjYIowLk3XffrTlyIW1HHnlkuPPOO8Oyyy5r6wbrrruu4WQe6E8ItAgBKYEWAStvv0WArZTseMmTRRZZJNArZlF1jz32MCvpaRne8cyP/fjLLbdc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FwLlQ+DLL78sX6QUo0IEpAQKoRm4F59++mngEEve74MPPhi4iCnkrkRgjTXWCEOHDk3S/swzz1jZPPTQQxOzW265xcyeeuqpMO6444bnnnsueec32Jl22mnt8bDDDgtbbbWVv9J1ABGQEhhA8IuCdtK6Sy65JDz77LNVv0kmmaTImcyFQEsQgAjw1ltvTfyGqgK5/vrr7crf3XffHWaccUb7JYaZm0UXXTRcddVVZkoZ/+abbzI29DgQCEgJDATqDYY5/fTTh1lnnbXqx+jg8ccfN4bTSSedNCy++OLhrrvuMh8ffPDBsPHGG4ejjjoqLLTQQg2GImtCoDYCyy+/fHj55ZfDq6++ahZvvPHGsNNOO1m5e++998yMMrjOOuskHp1zzjlhvvnmC7PPPns4++yzzZwRxJFHHpnY8ZvXXnstbLrppjZKWG211QLlWNJ/CEgJ9B/WPQ6JynbhhRcmv8ceeyx8/vnngYoywQQThOuuuy6svvrqYc011wxvvPFG+Oijj8Lll18eTj/99LDrrrv2ODw5EAJ5CNCDR+69997w1VdfhRtuuCFss802Ya655gp33HGHmVFW09ThF1xwQTj44IPDWmutZXYptygM77B4OIwI1ltvvfDuu++G888/PxDWIossYnbdjq6tRWDs1nov33uDwCmnnBImn3zyxIt99903vPjii9YrQyEwNbTsssuG448/3obrDMeRa6+9NswxxxyJO90Igd4gMN5441lHgymf6aabzrxaeOGFred/8803h1lmmcXMlltuuSSYE088Mayyyiph5ZVXDieccELuGgGWH3jgAVMurCEMGjTI7J955plWnjfaaKPEP920DgEpgdZh22ufr7jiirDMMstU+YNimHfeeU0B+IsFF1wwvP766zYfi2KQAnBkdO0rBFZaaaVw5ZVXhskmmyywUDz22GMHzHbbbbdA+WNUwPTlJ598YkHSoCMTTzyxXRkJ5AlrXgjTnml5880304+6byECmg5qIbit8HqeeeYJL730Uvj666/Ne4bTjzzyiK0NtCI8+SkEQIB1AaZyLrvsMpuOxIxRKI34GWecYdOSmLmMNdZYflvzilJBWBf4+OOP7ce0k0YBNWHr05dSAn0KZ+s9W2qppSwQ5v19fhYDFoglQqBVCAwePNi8ZvrG5/5pwBmp3nPPPYlZT8Nn/h8599xzbXTB174WW2wxW+PqqV+y3xwCUgLN4dZSV+wAKpJxxhknHH744WGHHXYIU045pS28HXfccVaBarkr8k/mQqARBCh36667rk05pqcb2aSAMCqoJdmyyfOYY44Zpp566nDRRReFffbZJ7D2wA4jzhCws0jSPwjoy2IFOFNIfb9+gZUBNWanBdv2ZptttjDhhBMOaFzyAi87fnlxbkezTsGZqSAWh2eYYYYwxRRT9FtWdAp+vQFMSqAAPRWOAmAaNBZ+DQLVS2vCuXcACj99XrJ3JUiuhYAQEAJtjoDWBNo8AxV9ISAEhEBvEJAS6A16cisEhIAQaHMEpATaPAMVfSEgBIRAbxCQEugNenIrBISAEGhzBKQE2jwDFX0hIASEQG8QkBLoDXpyKwSEgBBocwSkBNo8AxV9ISAEhEBvEJAS6A16cisEhIAQaHMEpAQKMhCSLP+MXoEVGRcgAG7gJ2k9AiqnzWOscvotdlICzZchuSxAYNSoUVICBdjIuDwIqJx+mxfiDiook/QShgwZUmoSuYKoD7gxfCxQAms00PqsUDltHmOV02+xkxKoUYZGjBgRqGQ0aJLGEEBx0vgPGzasMQey1WsEVE57DqHK6feYjTU8yvePuksjQGP2wgsv2IiAXgMy6LvP5qXtdfs9ivL555+3TwQOHTpUCqCfC4TKaWOAq5zm46SRQD4uVaYUHuYPufKTVCNAI4TQ+/d7M9BfvyJA2VQ5LYbcy6bKaTVGUgLVeOhJCAgBIdBVCGh3UFdltxIrBISAEKhGQEqgGg89CQEhIAS6CgEpga7KbiVWCAgBIVCNgJRANR56EgJCQAh0FQJSAl2V3UqsEBACQqAaASmBajz0JASEgBDoKgSkBLoqu5VYISAEhEA1AlIC1XjoSQgIASHQVQhICXRVdiuxQkAICIFqBKQEqvHQkxAQAkKgqxCQEuiq7FZihYAQEALVCEgJVOOhJyEgBIRAVyEgJdBV2a3ECgEhIASqEZASqMZDT0JACAiBrkJASqCrsluJFQJCQAhUIyAlUI2HnoSAEBACXYWAlEAfZ/e7777bxz7KOyEgBL7++uvAr9Xy2Wefhc8//7zVwZTK/9IogUknnTTwHV//8XzggQeGb775plSAFUWGxn/ZZZcNs8wyS5EVmQsBIdAkAr/73e/Cr371q1zX1Luzzz47fPXVV9Z+PPnkk7n2igz/+9//hn333TdsuummYc455ww33nhjkdWONC+NEgDd008/Pbz++uvhlVdeCRdccEE45JBD2iZD/v3vf4e77rrL4t+RJUWJEgIlReBPf/pTWH311ZPYVSqV5L7ezbPPPhsWXXTRMO6444att946/O1vfwvrrbdePWcd9b5USmDyyScP00wzTZh++unD2muvbffvv//+aIDvuOOO4YorrkjMd9ppp3DppZdaT2DxxRcPZCzy1ltvWe8c5UIvIf2O3gI9iHPPPdfsnnfeefYeO/576aWX7N3xxx8fGJnw22677cIHH3xg5v736quvBuKEbLTRRnZ9/PHHw5AhQ8wN/qEgkLPOOiscdNBBYdtttx2tZ+Nx5J3LE088YfE588wzR0uD23F3nu6seZF/2Hv00UcNB0ZgCy20ULjlllsClWiLLbYI+++/v3kFDqTh008/tXf0yPbcc0979/zzz4eVV17ZemDzzTdfuP76680czHFzzz332DN/e++9t5n1x7A+CVQ3DSPQ3/XKI3bYYYcFPv6OUG8oN//617/s+bTTTrMZAR5ee+01661PO+20Ya211gpvv/222aGsPfDAA3af/mN0QJmeffbZzX/qSVbwf5VVVgmU8RNPPDGMHDnS6tntt99u9eKLL74wJ1xpLzBHttlmG4snceX3m9/8xsz5y2svHnzwwSr77g7zAZdY4Ushk0wySWWXXXapxEa5Ehu8ys9//vPKbLPNVnnvvfdGi99yyy1XOfnkkxPzFVdcsRIzsBLn8ugCVP7zn//Yux122MGeR4wYUfXu6aefrkRlU9l1110rcbrJ7MaCWMHfq666qnLhhReauzhMrPz1r3+1+0suuaTyz3/+s7LIIotUYgOYhM1NbBwrxx13XIU03H333ZU4r1iZccYZK2uuuWbljjvuqBxwwAH2Lo5yKnF0Y/7Fnkvl73//e5U/Hn/SEAu4vfv9739v9g8++OCqNKQdujtPt79z81r+EU+wjpWoMnz4cAsrjsQqcWRj91G5Vp566im7/+ijj5J0vvzyy5XYmFcWXHDByvrrr1956KGHKscee6zZixWqAuaEGyuHRQeMeOb35ZdfehR1LREC/Vmv0sk+55xzrK5jduqpp1oZOeKII8wK9eTPf/5zJXaczDx2TCqUScotdQJZZpllrM2gXFG+oiKpXHfddXb/xz/+sXLzzTebfcpk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" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="for">
+<h1>Цикл <code class="docutils literal notranslate"><span class="pre">for</span></code><a class="headerlink" href="#for" title="Link to this heading">#</a></h1>
+<p>Цикл <code class="docutils literal notranslate"><span class="pre">for</span></code> позволяет перебирать элементы в последовательности и выполнять определённые действия с каждым из них.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Синтаксис цикла for:</span>
+<span class="c1"># for элемент in последовательность:</span>
+    <span class="c1"># код, который нужно выполнить</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Начнём с простого примера — <strong>работы со списком</strong>. Представь, что у тебя есть список покупок и нужно вывести каждый элемент этого списка на отдельной строке:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Список покупок</span>
+<span class="n">grocery_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;молоко&#39;</span><span class="p">,</span> <span class="s1">&#39;бананы&#39;</span><span class="p">,</span> <span class="s1">&#39;сыр&#39;</span><span class="p">,</span> <span class="s1">&#39;яйца&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Цикл начинается с ключевого слова <code class="docutils literal notranslate"><span class="pre">for</span></code>, а затем идёт конструкция <code class="docutils literal notranslate"><span class="pre">item</span> <span class="pre">in</span> <span class="pre">grocery_list:</span></code>. Этим мы говорим компьютеру: «Пока в списке (<code class="docutils literal notranslate"><span class="pre">grocery_list``)</span> <span class="pre">есть</span> <span class="pre">элементы</span> <span class="pre">(</span></code>item`), выполняй определенное действие».</p>
+<p>Выполняемое действие записывается на следующей строке с отступом. В случае со списком нужно выводить каждый элемент списка по очереди, используя функцию <code class="docutils literal notranslate"><span class="pre">print(item)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Цикл для вывода каждого элемента списка</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">grocery_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;В твоей продуктовой корзине: </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>В твоей продуктовой корзине: молоко
+В твоей продуктовой корзине: бананы
+В твоей продуктовой корзине: сыр
+В твоей продуктовой корзине: яйца
+</pre></div>
+</div>
+</div>
+</div>
+<p>В нашем случае переменная цикла <code class="docutils literal notranslate"><span class="pre">item</span></code> действует как хранилище для элементов списка. Во время первой итерации цикла в неё автоматически помещаются молоко, а во время второй итерации - бананы и так далее. Вот как это выглядит:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">item</span></code> = «молоко»
+вывести на печать: молоко</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">item</span></code> = «бананы»
+вывести на печать: молоко, бананы
+…</p></li>
+</ul>
+<p>И да, вместо <code class="docutils literal notranslate"><span class="pre">item</span></code> можно использовать и другие слова или буквы. Например, ты часто будешь видеть следующее обозначение <code class="docutils literal notranslate"><span class="pre">i</span></code>. Это сокращение от английского слова <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p>
+<p>Следующий пример — <strong>работа со словарём</strong>, который представляет собой набор пар ключ-значение. Можно использовать цикл для перебора словаря и получить доступ к ключам и соответствующим значениям.</p>
+<p>Возьмём словарь с продуктами и их количеством и выведем каждую пару ключ-значение на отдельной строке:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Словарь с продуктами и их количеством</span>
+<span class="n">grocery_dict</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;молоко&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s1">&#39;бананы&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s1">&#39;сыр&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s1">&#39;яйца&#39;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Теперь попробуем вывести и названия товаров, и количество. Для этого снова берём цикл <code class="docutils literal notranslate"><span class="pre">for</span></code> и проходимся по каждой паре ключ-значение в словаре покупок с помощью выражения <code class="docutils literal notranslate"><span class="pre">product</span></code>, <code class="docutils literal notranslate"><span class="pre">quantity</span> <span class="pre">in</span> <span class="pre">grocery_dict.items()</span></code>.</p>
+<p>Это позволяет получить доступ к ключам (<code class="docutils literal notranslate"><span class="pre">product</span></code>) и их значениям (<code class="docutils literal notranslate"><span class="pre">quantity</span></code>) поочерёдно в каждой итерации цикла. Действие внутри цикла будет состоять в выводе этих переменных.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Цикл для вывода каждой пары ключ-значение</span>
+<span class="k">for</span> <span class="n">product</span><span class="p">,</span> <span class="n">quantity</span> <span class="ow">in</span> <span class="n">grocery_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;В твоей продуктовой корзине: </span><span class="si">{</span><span class="n">product</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">quantity</span><span class="si">}</span><span class="s1"> шт.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>В твоей продуктовой корзине: молоко 1 шт.
+В твоей продуктовой корзине: бананы 2 шт.
+В твоей продуктовой корзине: сыр 1 шт.
+В твоей продуктовой корзине: яйца 1 шт.
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>📝 Комментарий <br></p>
+<ul class="simple">
+<li><p>Обычно в Python для обозначения ключа и значения словаря используются переменные <code class="docutils literal notranslate"><span class="pre">k</span></code> и <code class="docutils literal notranslate"><span class="pre">v</span></code> как сокращения от <code class="docutils literal notranslate"><span class="pre">key</span></code> и <code class="docutils literal notranslate"><span class="pre">value</span></code>, однако на самом деле названия переменных могут быть любыми. В случае с продуктами product = k, quantity = v.</p></li>
+<li><p>Метод <code class="docutils literal notranslate"><span class="pre">.items()</span></code> указывает компьютеру, что мы хотим записать ключ и значение словаря <code class="docutils literal notranslate"><span class="pre">grocery_dict</span></code> в переменные product и quantity соответственно.</p></li>
+</ul>
+</div></blockquote>
+<p>Можно вывести только ключи или только значения. Для этого нужны методы <code class="docutils literal notranslate"><span class="pre">.keys()</span></code> или <code class="docutils literal notranslate"><span class="pre">.values()</span></code> соответственно.</p>
+<p>Вот как вывести только числа, то есть первые элементы значений в словаре:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grocery_dict</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;молоко&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;л.&#39;</span><span class="p">],</span> <span class="s1">&#39;бананы&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;шт.&#39;</span><span class="p">],</span> <span class="s1">&#39;брокколи&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;шт.&#39;</span><span class="p">],</span> <span class="s1">&#39;йогурт&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;шт.&#39;</span><span class="p">]</span> <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">quantity</span> <span class="ow">in</span> <span class="n">grocery_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">quantity</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+1
+1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Таким образом, мы успешно вывели только числовые значения, а единицы измерения проигнорировали.</p>
+<section id="id2">
+<h2>Вложенность цикла<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Один цикл for можно вложить в другой, это называется «вложенные циклы» (англ. nested for loops). Рассмотрим базу данных клиентов, где у каждого клиента свои данные.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clients</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Анна&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">27</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="s1">&#39;female&#39;</span><span class="p">},</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Света&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="s1">&#39;female&#39;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># пройдёмся по словарю клиентов</span>
+<span class="k">for</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">client_info</span> <span class="ow">in</span> <span class="n">clients</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ID клиента:&#39;</span><span class="p">,</span> <span class="n">client_id</span><span class="p">)</span>
+    <span class="c1"># пройдёмся по данным о каждом клиенте</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">client_info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>  <span class="c1"># добавляем пустую строку между информацией о клиентах</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ID клиента: 1
+name: Анна
+age: 27
+gender: female
+
+ID клиента: 2
+name: Света
+age: 30
+gender: female
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>📝 Комментарий <br></p>
+<ul class="simple">
+<li><p>Обрати внимание на соблюдение отступов слева. Они указывают на порядок выполнения операций. Например, команда <code class="docutils literal notranslate"><span class="pre">print()</span></code> без аргументов с одним отступом будет выполнена после вывода всей информации об одном клиенте, а не после каждого поля с данными.</p></li>
+<li><p>Когда используешь команду <code class="docutils literal notranslate"><span class="pre">print()</span></code>, можно объединить строку, и не одну. Но объединять строку и, например, число или число с плавающей запятой нельзя. Дело в том, что идентификатор <code class="docutils literal notranslate"><span class="pre">id</span></code> и возраст age являются числами (такой тип данных называется int). Чтобы объединить разные типы данных, их нужно сначала принудительно преобразовать в строки с помощью функции <code class="docutils literal notranslate"><span class="pre">str()</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="range">
+<h2>Функция <code class="docutils literal notranslate"><span class="pre">range()</span></code><a class="headerlink" href="#range" title="Link to this heading">#</a></h2>
+<p>Циклы помогают выполнять повторяющиеся действия. Но что если нужно выполнить определённое количество итераций? Для этой цели существует функция <code class="docutils literal notranslate"><span class="pre">range()</span></code>.</p>
+<p>Давай посмотрим, как это работает:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Создадим последовательность от 0 до 5</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># От 1 до 10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># От 0 до 5 с шагом 2 (цикл будет проходить через одно число)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+2
+4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Разберёмся, как работает функция <code class="docutils literal notranslate"><span class="pre">range()</span></code>. Её параметры: <code class="docutils literal notranslate"><span class="pre">range(start,</span> <span class="pre">stop,</span> <span class="pre">step)</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">start</span></code> — это последовательность от 0 до stop. Кстати, по умолчанию значение 0.</p>
+<p><code class="docutils literal notranslate"><span class="pre">stop</span></code> — это последовательность от start до stop, последнее значение не включается.</p>
+<p><code class="docutils literal notranslate"><span class="pre">step</span></code> — шаг, на который увеличивается каждый элемент (по умолчанию 1).</p>
+<p>В итоге функция принимает три параметра.</p>
+<ul class="simple">
+<li><p>Когда передается только один аргумент, последовательность начинается с 0 и заканчивается на значении до аргумента. Как в примере выше, <code class="docutils literal notranslate"><span class="pre">range(6)</span></code> создаёт последовательность от 0 до 5.</p></li>
+<li><p>Когда передаются два аргумента, последовательность начинается с первого аргумента и заканчивается на значении до второго аргумента. Как в коде выше, <code class="docutils literal notranslate"><span class="pre">range(1,</span> <span class="pre">10)</span></code> создаёт последовательность от 1 до 11.</p></li>
+<li><p>Последний аргумент устанавливает шаг. Как в коде выше, <code class="docutils literal notranslate"><span class="pre">range(0,</span> <span class="pre">6,</span> <span class="pre">2)</span></code> создаёт последовательность от 0 до 4 с шагом 2.</p></li>
+</ul>
+<p>Эта функция полезна, когда нужно итерироваться по последовательности чисел или при использовании индексов для доступа к элементам списка.</p>
+<blockquote>
+<div><p>📝 Комментарий <br></p>
+<p>Если сейчас непонятно, что за функция такая и как она работает, ничего страшного. Позднее рассмотрим тему функций и тогда всё встанет на свои места.</p>
+</div></blockquote>
+<p>Усложняем немного код. Сейчас будем использовать функцию range() в связке с len() для итерации по индексам двух списков и вывода соответствующих элементов в одном цикле.
+Допустим, у нас есть два списка: список клиентов и список их оборотов по месяцам:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Список клиентов</span>
+<span class="n">clients</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Иванов&#39;</span><span class="p">,</span> <span class="s1">&#39;Петров&#39;</span><span class="p">,</span> <span class="s1">&#39;Сидоров&#39;</span><span class="p">,</span> <span class="s1">&#39;Смирнов&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Обороты по месяцам в тыс. рублей</span>
+<span class="n">turnover</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">150000</span><span class="p">,</span> <span class="mi">120000</span><span class="p">,</span> <span class="mi">200000</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span> <span class="c1"># Используя длину одного из списков, создадим последовательность</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clients</span><span class="p">)):</span>
+  <span class="c1"># Выведем информацию о клиентах и их оборотах в одном цикле</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">turnover</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Иванов 100000
+Петров 150000
+Сидоров 120000
+Смирнов 200000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Таким образом, мы можем легко просмотреть информацию о клиентах и их оборотах за определённый период, используя всего лишь один цикл в связке с другими функциями.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="while">
+<h1>Цикл <code class="docutils literal notranslate"><span class="pre">while</span></code><a class="headerlink" href="#while" title="Link to this heading">#</a></h1>
+<p>В отличие от цикла <code class="docutils literal notranslate"><span class="pre">for</span></code>, который выполняется определённое количество раз на основе итерируемого объекта, цикл <code class="docutils literal notranslate"><span class="pre">while</span></code> продолжает выполняться, пока условие истинно.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Синтаксис цикла while:</span>
+<span class="c1"># while условие:</span>
+    <span class="c1"># код, который нужно выполнить</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Рассмотрим работу цикла на примере:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Установим начальное значение счётчика</span>
+<span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Пока счётчик меньше пяти</span>
+<span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+
+  <span class="c1"># Выводим текущее значение счётчика</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Текущее значение:  &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+
+  <span class="c1"># Увеличим счётчик на единицу</span>
+  <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+
+  <span class="c1"># Выводим новое значение счётчика</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Новое значение:    &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">))</span>
+
+  <span class="c1"># Для лучшей читаемости добавим пустую строку</span>
+  <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Текущее значение:  0
+Новое значение:    1
+
+Текущее значение:  1
+Новое значение:    2
+
+Текущее значение:  2
+Новое значение:    3
+
+Текущее значение:  3
+Новое значение:    4
+
+Текущее значение:  4
+Новое значение:    5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Хорошо, ты увидел, как работает код. Давай разбираться, как именно получился этот результат:</p>
+<ul class="simple">
+<li><p>В начале кода есть счётчик, который устанавливается на определённое значение (в нашем случае 0, но на практике это может быть любое число).</p></li>
+<li><p>На каждой итерации цикла проверяется условие: счётчик должен быть меньше 5.</p></li>
+<li><p>При первой итерации, так как значение счетчика равно 0 и меньше 5, выполняется код внутри цикла, и счётчик увеличивает значение на +1.</p></li>
+<li><p>На следующей итерации счётчик равен 1, что также удовлетворяет условию, поэтому код внутри цикла снова выполняется и значение счётчика увеличивается ещё на 1.</p></li>
+<li><p>Этот процесс повторяется на третьей итерации, когда счётчик становится равным 4.</p></li>
+<li><p>Однако при попытке выполнить четвёртую итерацию условие «меньше 5» уже не верно, поэтому выполнение цикла прекращается.</p></li>
+</ul>
+<p>Кстати, вместо того, чтобы прибавлять 1 к переменной <code class="docutils literal notranslate"><span class="pre">i</span></code> с помощью выражения <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">=</span> <span class="pre">i</span> <span class="pre">+</span> <span class="pre">1</span></code>, можно использовать более короткую запись: <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">+=</span> <span class="pre">1</span></code>. Это эквивалентное выражение, которое также увеличивает значение переменной <code class="docutils literal notranslate"><span class="pre">i</span></code> на 1. Например:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+1
+2
+3
+4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Этот код будет выводить числа от 0 до 4, так как цикл продолжается, пока i меньше 5.</p>
+<section id="break-continue">
+<h2>Операторы <code class="docutils literal notranslate"><span class="pre">break</span></code> и <code class="docutils literal notranslate"><span class="pre">continue</span></code><a class="headerlink" href="#break-continue" title="Link to this heading">#</a></h2>
+<p><strong>Оператор <code class="docutils literal notranslate"><span class="pre">break</span></code></strong></p>
+<p>Допустим, у тебя есть цикл, который ты применяешь к очень длинному списку или словарю, содержащему большое количество элементов. Но в правильности своего кода ты сомневаешься. Если запустить цикл сразу на всём списке или словаре и окажется, что код не выполняется корректно, придётся ждать, пока компьютер просмотрит все элементы списка или словаря.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Предположим, у нас есть словарь с информацией о клиентах</span>
+<span class="n">clients_info</span> <span class="o">=</span> <span class="p">{</span><span class="mi">101</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Константин&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">:</span> <span class="mi">50000</span><span class="p">},</span>
+                <span class="mi">102</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Татьяна&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">29</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">:</span> <span class="mi">60000</span><span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Проходимся по каждому клиенту в словаре</span>
+<span class="k">for</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">details</span> <span class="ow">in</span> <span class="n">clients_info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+
+  <span class="c1"># Выводим информацию о клиенте</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Client ID:&quot;</span><span class="p">,</span> <span class="n">client_id</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Details:&quot;</span><span class="p">,</span> <span class="n">details</span><span class="p">)</span>
+
+  <span class="c1"># Прерываем цикл после первого клиента</span>
+  <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Client ID: 101
+Details: {&#39;name&#39;: &#39;Константин&#39;, &#39;age&#39;: 35, &#39;income&#39;: 50000}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Можно прервать выполнение цикла, когда определённое условие становится истинным.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Установим начальное значение переменной</span>
+<span class="n">countdown</span> <span class="o">=</span> <span class="mi">6</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Цикл будет продолжаться, пока переменная не станет равной нулю</span>
+<span class="k">while</span> <span class="n">countdown</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="c1"># Выводим текущее значение переменной</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">countdown</span><span class="p">)</span>
+  <span class="c1"># Уменьшаем значение переменной на 1</span>
+  <span class="n">countdown</span> <span class="o">-=</span> <span class="mi">1</span>
+  <span class="c1"># Если значение переменной достигнет 3, прерываем цикл</span>
+  <span class="k">if</span> <span class="n">countdown</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+5
+4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Здесь цикл прерывается, когда значение счётчика становится равным 3.</p>
+<p>Обрати внимание: в коде используется сокращённая запись <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">-=</span> <span class="pre">1</span></code> вместо <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+<p><strong>Оператор <code class="docutils literal notranslate"><span class="pre">continue</span></code></strong></p>
+<p>Иногда нужно пропустить одну или несколько итераций цикла, но не прекращать его полностью. В таких случаях поможет оператор <code class="docutils literal notranslate"><span class="pre">continue</span></code>.</p>
+<p>Предположим, у тебя есть задача создать последовательность чисел от 1 до 20 и вывести только те числа, которые делятся на 5 без остатка:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Создадим последовательность от 1 до 20</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">):</span>
+
+  <span class="c1"># Если число не делится на 5 без остатка, пропустим его</span>
+  <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+
+    <span class="c1"># Перейдём к следующему числу</span>
+    <span class="k">continue</span>
+
+  <span class="c1"># В итоге выведем только те числа, которые делятся на 5 без остатка</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+10
+15
+20
+</pre></div>
+</div>
+</div>
+</div>
+<p>Здесь оператор continue используется для пропуска вывода чисел, которые не делятся на 5 без остатка.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id3">
+<h1>Заключение<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<p>Теперь ты придёшь на лекцию с базой знаний о том:</p>
+<ol class="arabic simple">
+<li><p>какие бывают циклы в Python;</p></li>
+<li><p>как они работают;</p></li>
+<li><p>как взаимосвязаны циклы и функции;</p></li>
+<li><p>как использовать операторы break и continue.</p></li>
+</ol>
+<p>Эти знания открывают перед тобой возможности автоматизации кода и позволяют отдавать циклам рутинные прогрммистские задачи. Циклы облегчают работу программиста и делают её более эффективной и продуктивной.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "maximkeremet/tinkoff-python-course",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./01_python_101"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_conditional_statements.html"
+       title="предыдущая страница">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">назад</p>
+        <p class="prev-next-title">Условные конструкции</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_functions.html"
+       title="следующая страница">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">вперёд</p>
+        <p class="prev-next-title">Функции в Python</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Содержание
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Циклы в Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Исследование циклов в Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#for">Цикл <code class="docutils literal notranslate"><span class="pre">for</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Вложенность цикла</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#range">Функция <code class="docutils literal notranslate"><span class="pre">range()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#while">Цикл <code class="docutils literal notranslate"><span class="pre">while</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#break-continue">Операторы <code class="docutils literal notranslate"><span class="pre">break</span></code> и <code class="docutils literal notranslate"><span class="pre">continue</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Заключение</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

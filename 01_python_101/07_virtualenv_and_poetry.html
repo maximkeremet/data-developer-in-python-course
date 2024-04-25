@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+
+
+<html lang="ru" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Виртуальные окружения в Python и управление зависимостями с помощью Poetry. &#8212; Data разработка на Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=576a2c22"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=29b1f277"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_python_101/07_virtualenv_and_poetry';</script>
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Концепция объектно-ориентированного программирования (ООП) в Python" href="08_oop.html" />
+    <link rel="prev" title="Устанавливаем IDE" href="06_installing_ide_tools.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ru"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Перейти к основному содержанию</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo2.svg" class="logo__image only-light" alt="Data разработка на Python - Home"/>
+    <script>document.write(`<img src="../_static/logo2.svg" class="logo__image only-dark" alt="Data разработка на Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Поиск" aria-label="Поиск" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Поиск</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Приветствие курса
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python 101</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_interpreter.html">Об интерпретаторе Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_structures_basic.html">Базовые типы данных</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="02_data_structures_complex.html">Составные структуры данных в Python</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="03_conditional_statements.html">Условные конструкции</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_loops.html">Циклы в Python</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="05_functions.html">Функции в Python</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_installing_ide_tools.html">Устанавливаем IDE</a></li>
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Виртуальные окружения в Python и управление зависимостями с помощью Poetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_oop.html">Концепция объектно-ориентированного программирования (ООП) в Python</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/maximkeremet/tinkoff-python-course/blob/main/book/01_python_101/07_virtualenv_and_poetry.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/maximkeremet/tinkoff-python-course/edit/main/book/01_python_101/07_virtualenv_and_poetry.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/maximkeremet/tinkoff-python-course/issues/new?title=Issue%20on%20page%20%2F01_python_101/07_virtualenv_and_poetry.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Открыть вопрос"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Загрузите эту страницу">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/01_python_101/07_virtualenv_and_poetry.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Скачать исходный файл"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Распечатать в PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Полноэкранный режим"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="светлая/темная" aria-label="светлая/темная" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Поиск" aria-label="Поиск" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Виртуальные окружения в Python и управление зависимостями с помощью Poetry.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Содержание </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Что такое виртуальное окружение?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Зачем нужны виртуальные окружения?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#venv">Что такое venv?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Вывод</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poetry">Что такое Poetry?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Вывод</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python-poetry">
+<h1>Виртуальные окружения в Python и управление зависимостями с помощью Poetry.<a class="headerlink" href="#python-poetry" title="Link to this heading">#</a></h1>
+<p><strong>Цели урока:</strong></p>
+<ul class="simple">
+<li><p>Познакомиться с понятием виртуальное окружение</p></li>
+<li><p>Научиться управлять зависимостями с помощью виртуального окружения</p></li>
+<li><p>Изучить poetry</p></li>
+</ul>
+<section id="id1">
+<h2>Что такое виртуальное окружение?<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Виртуальное окружение в Python - это изолированное пространство, в котором можно устанавливать пакеты Python и их зависимости, независимо от других проектов. Это позволяет избежать конфликта версий пакетов.</p>
+</section>
+<section id="id2">
+<h2>Зачем нужны виртуальные окружения?<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Изоляция проектов</strong>. Различные проекты могут использовать разные версии пакетов, виртуальное окружение помогают изолировать их друг от друга.</p></li>
+<li><p><strong>Управление зависимостями</strong>. Виртуальные окружения позволяют легко и удобно управлять зависимостями, устанавливать пакеты и удалять их.</p></li>
+</ol>
+</section>
+<section id="venv">
+<h2>Что такое venv?<a class="headerlink" href="#venv" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">venv</span></code> - это инструмент, встроенный в Python, который позволяет создавать изолированные окружения для проектов. Это полезно для управления зависимостями проекта и избегания конфликтов между различными версиями пакетов.</p>
+<p><strong>Как создать виртуальное окружение с помощью venv:</strong></p>
+<ol class="arabic">
+<li><p>Откройте терминал (или командную строку).</p></li>
+<li><p>Введите следующую команду:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">myenv</span>
+</pre></div>
+</div>
+<p>Здесь <code class="docutils literal notranslate"><span class="pre">myenv</span></code> - это имя вашего виртуального окружения. Вы можете выбрать любое удобное для вас имя.</p>
+</li>
+</ol>
+<p><strong>Как активировать виртуальное окружение:</strong></p>
+<ul>
+<li><p>В Windows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myenv</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p>В macOS и Linux:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">myenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p><strong>Как деактивировать виртуальное окружение:</strong>
+Просто введите <code class="docutils literal notranslate"><span class="pre">deactivate</span></code> в командной строке.</p>
+<p><strong>Пример использования:</strong></p>
+<ol class="arabic">
+<li><p>Создайте виртуальное окружение:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">myenv</span>
+</pre></div>
+</div>
+</li>
+<li><p>Активируйте его:</p>
+<ul>
+<li><p>В Windows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myenv</span>\<span class="n">Scripts</span>\<span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+<li><p>В macOS и Linux:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">myenv</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Установите необходимые пакеты:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">package_name</span>
+</pre></div>
+</div>
+</li>
+<li><p>После завершения работы с проектом деактивируйте виртуальное окружение:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="id3">
+<h2>Вывод<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Виртуальные окружения в Python являются важным инструментом для управления зависимостями и изоляции проектов.
+Рекомендуется использовать окружение под каждый проект для избежания конфликтов версий и удобного управления зависимостями.</p>
+</section>
+<section id="poetry">
+<h2>Что такое Poetry?<a class="headerlink" href="#poetry" title="Link to this heading">#</a></h2>
+<p><strong>Poetry</strong> - это инструмент для управления зависимостями и управления проектами Python. Он обеспечивает простой и удобный способ определения зависимостей, управления версиями и создания виртуальных окружений.</p>
+<p>Преимущества использования Poetry:</p>
+<ol class="arabic simple">
+<li><p><strong>Декларативное определение зависимостей</strong>: Poetry использует файл <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, который позволяет определять зависимости, версии пакетов и другие настройки проекта в декларативном стиле.</p></li>
+<li><p><strong>Управление зависимостями</strong>: Poetry позволяет управлять зависимостями проекта с помощью команды <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">add</span></code>, что делает добавление, обновление и удаление зависимостей простым и интуитивно понятным.</p></li>
+<li><p><strong>Виртуальные окружения</strong>: Poetry автоматически создает виртуальное окружение для каждого проекта, изолируя его зависимости от других проектов.</p></li>
+<li><p><strong>Консистентность и надежность</strong>: Poetry гарантирует консистентность установленных зависимостей, что уменьшает возможные конфликты версий и обеспечивает надежную работу проекта.</p></li>
+</ol>
+<p>Как начать использовать Poetry:</p>
+<ol class="arabic simple">
+<li><p><strong>Установка Poetry</strong>: Установите Poetry, выполнив команду <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">poetry</span></code>.</p></li>
+<li><p><strong>Создание нового проекта</strong>: Перейдите в директорию, где хотите создать новый проект, и выполните <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">new</span> <span class="pre">project_name</span></code>.</p></li>
+<li><p><strong>Добавление зависимостей</strong>: Используйте <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">add</span> <span class="pre">package_name</span></code> для добавления зависимостей в ваш проект. Poetry автоматически обновляет файл <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p></li>
+<li><p><strong>Управление версиями</strong>: Вы можете управлять версиями пакетов, выполнив <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">update</span> <span class="pre">package_name</span></code>.</p></li>
+<li><p><strong>Установка зависимостей</strong>: Запустите <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">install</span></code>, чтобы установить все зависимости из вашего файла <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.</p></li>
+<li><p><strong>Запуск скриптов и приложений</strong>: Используйте <code class="docutils literal notranslate"><span class="pre">poetry</span> <span class="pre">run</span></code> для запуска скриптов и приложений в контексте вашего виртуального окружения.</p></li>
+</ol>
+</section>
+<section id="id4">
+<h2>Вывод<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<p>Poetry предоставляет мощный и удобный способ управления зависимостями и <strong>проектами</strong> Python. Используйте его для упрощения разработки, обеспечения надежности и эффективного управления вашими проектами.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "maximkeremet/tinkoff-python-course",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./01_python_101"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="06_installing_ide_tools.html"
+       title="предыдущая страница">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">назад</p>
+        <p class="prev-next-title">Устанавливаем IDE</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="08_oop.html"
+       title="следующая страница">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">вперёд</p>
+        <p class="prev-next-title">Концепция объектно-ориентированного программирования (ООП) в Python</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Содержание
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Что такое виртуальное окружение?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Зачем нужны виртуальные окружения?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#venv">Что такое venv?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Вывод</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#poetry">Что такое Poetry?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Вывод</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

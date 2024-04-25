@@ -1,0 +1,1302 @@
+
+<!DOCTYPE html>
+
+
+<html lang="ru" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Составные структуры данных в Python &#8212; Data разработка на Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=576a2c22"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=29b1f277"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_python_101/02_data_structures_complex';</script>
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Условные конструкции" href="03_conditional_statements.html" />
+    <link rel="prev" title="Базовые типы данных" href="02_data_structures_basic.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ru"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Перейти к основному содержанию</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo2.svg" class="logo__image only-light" alt="Data разработка на Python - Home"/>
+    <script>document.write(`<img src="../_static/logo2.svg" class="logo__image only-dark" alt="Data разработка на Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Поиск" aria-label="Поиск" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Поиск</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Приветствие курса
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python 101</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_interpreter.html">Об интерпретаторе Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_structures_basic.html">Базовые типы данных</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Составные структуры данных в Python</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="03_conditional_statements.html">Условные конструкции</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_loops.html">Циклы в Python</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="05_functions.html">Функции в Python</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_installing_ide_tools.html">Устанавливаем IDE</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="07_virtualenv_and_poetry.html">Виртуальные окружения в Python и управление зависимостями с помощью Poetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_oop.html">Концепция объектно-ориентированного программирования (ООП) в Python</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/maximkeremet/tinkoff-python-course/blob/main/book/01_python_101/02_data_structures_complex.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/maximkeremet/tinkoff-python-course/edit/main/book/01_python_101/02_data_structures_complex.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/maximkeremet/tinkoff-python-course/issues/new?title=Issue%20on%20page%20%2F01_python_101/02_data_structures_complex.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Открыть вопрос"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Загрузите эту страницу">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/01_python_101/02_data_structures_complex.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Скачать исходный файл"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Распечатать в PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Полноэкранный режим"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="светлая/темная" aria-label="светлая/темная" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Поиск" aria-label="Поиск" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Составные структуры данных в Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Содержание </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Составные структуры данных в Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list">Списки (<code class="docutils literal notranslate"><span class="pre">list</span></code>)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Создание списка</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Индексация в списках</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Срезы в списках</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Вставка элементов в список</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Удаление элементов из списка</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Вывод по спискам</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple">Кортежи (<code class="docutils literal notranslate"><span class="pre">tuple</span></code>)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Создание кортежа</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Вывод по кортежам</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dict">Словари (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Создание словаря</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Методы словарей</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Ограничения на ключи словарей</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Уникальность ключей</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Неизменяемость ключей</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Вывод по словарям</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#set">Множества (<code class="docutils literal notranslate"><span class="pre">set</span></code>)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Создание множества</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Операции со множествами</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Вывод по множествам</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Вывод</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python">
+<h1>Составные структуры данных в Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h1>
+<p>Мы уже познакомились с вами с очень важным типом данных, который называется строки.</p>
+<p>В этом уроке мы рассмотрим другие немаловажные типы данных. Их называют составными или, иногда, «контейнеры», то есть это типы данных, которые могут в содержать другие типы, те же строки например.</p>
+<p>Наш план на этот урок узнать что такое:</p>
+<ul class="simple">
+<li><p>Списки: создание, срезы, вставка и удаление элементов, индексация.</p></li>
+<li><p>Кортежи: отличие от списков, создание.</p></li>
+<li><p>Словари: создание, методы, ограничения.</p></li>
+<li><p>Множества: создание, операции.</p></li>
+</ul>
+<p>Составные труктуры (списки, кортежи, словари и множества) — важные инструменты для работы с данными. Они позволяют эффективно и просто решать любые задачи на Python, начиная от бытовых (список дел, покупок), заканчивая статистическими исследованиями и разработкой сложных сервисов.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="list">
+<h1>Списки (<code class="docutils literal notranslate"><span class="pre">list</span></code>)<a class="headerlink" href="#list" title="Link to this heading">#</a></h1>
+<p>Начнём с простого примера. Давай представим, что мы покупаем продукты в интернет-магазине. Продукты мы кладём в корзину.</p>
+<p>Можно создать корзину с помощью известных нам строк. Давайте посмотрим, как это будет выглядеть.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purchase_cart</span> <span class="o">=</span> <span class="s2">&quot;Молоко, Хлеб, Картофель, Фарш&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Молоко, Хлеб, Картофель, Фарш
+</pre></div>
+</div>
+</div>
+</div>
+<p>Как нам например получить отдельно первую позицию в списке, ведь это целая строка? Не очень удобно для использования. Давайте попробуем другой вариант.</p>
+<section id="id1">
+<h2>Создание списка<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>Представим, что корзина — это список продуктов. Конечно, разработчики бэкенда этого магазина поспорили бы, ведь корзина — не просто список, там есть и счётчики, и дополнительные параметры в виде цены, веса. Но для нас это неважно, мы просто создаём список покупок, кликая мышкой на нужный продукт и нажимая кнопку «Добавить в корзину».</p>
+<p>А теперь посмотрим, как создать список в Python.
+Как мы сказали в начале, списки могут содержать в себе строки. Давайте создадим список со строками внутри.</p>
+<p>Чтобы создать список, достаточно перечислить названия продуктов через запятую и заключить в квадратные скобочки. Совсем несложно, создадим список purchase_cart с нашими покупками.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purchase_cart</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Молоко&quot;</span><span class="p">,</span> <span class="s2">&quot;Хлеб&quot;</span><span class="p">,</span> <span class="s2">&quot;Картофель&quot;</span><span class="p">,</span> <span class="s2">&quot;Фарш&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Попробуем распечатать список с помощью функции print.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Молоко&#39;, &#39;Хлеб&#39;, &#39;Картофель&#39;, &#39;Фарш&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Список позволяет обращаться к элементом по отдельности. Например, можно напечатать третий элемент списка покупок.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Картофель
+</pre></div>
+</div>
+</div>
+</div>
+<p>Как это? Мы хотели вывести третий элемент, а в скобках написали 2. Но напечатан всё равно третий по счёту.</p>
+<p>Дело в длине списка. Этот термин пригодится в большинстве задач, связанных со структурами данных.</p>
+<p>Длина списка — это количество элементов в нём. В нашем случае — количество продуктов в корзине. Как узнать длину списка? Посчитать элементы, конечно.</p>
+<p>Текущий список покупок у нас такой: <br>
+<code class="docutils literal notranslate"><span class="pre">['Молоко',</span> <span class="pre">'Хлеб',</span> <span class="pre">'Картофель',</span> <span class="pre">'Фарш']</span></code></p>
+<p>Сколько в нём элементов?</p>
+<ol class="arabic simple">
+<li><p>Молоко.</p></li>
+<li><p>Хлеб.</p></li>
+<li><p>Картофель.</p></li>
+<li><p>Фарш.</p></li>
+</ol>
+<p>Чтобы мы не считали самостоятельно, в Python есть функция len.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h3>Индексация в списках<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Теперь мы готовы к ещё одному важному определению.</p>
+<p>То, что мы пишем в скобках (как в <code class="docutils literal notranslate"><span class="pre">purchase_cart[2]</span></code>) называется <strong>индексом.</strong> Это порядковый номер элемента. Нумерация в списках начинается с нуля: первому элементу соответствует индекс 0, второму 1, а третьему 2.</p>
+<p>В нашем примере «Картофель» — это элемент с индексом 2. Данное утверждение актуально, пока мы не меняли списки.</p>
+<p>Индекс — это всегда целое число, оно не может быть дробным. Но в Python индексы бывают отрицательными. Диапазон значений индекса — от 0 до len() - 1.</p>
+<p>Мы видим, что элемент с индексом -1 совпадает с последним элементом в списке.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Фарш
+</pre></div>
+</div>
+</div>
+</div>
+<p>Индекс -1 означает последний элемент.
+Также последний элемент может быть получен выражением <code class="docutils literal notranslate"><span class="pre">длина</span> <span class="pre">списка</span> <span class="pre">-</span> <span class="pre">1</span></code>.</p>
+<blockquote>
+<div><p>Если указать индекс вне диапазона (0 до значения len() - 1), интерпретатор Python выдаст ошибку <code class="docutils literal notranslate"><span class="pre">IndexError</span></code>.</p>
+</div></blockquote>
+</section>
+<section id="id3">
+<h3>Срезы в списках<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Бывают случаи, когда нужно получить значения не по одному конкретному индексу, а по диапазону: например, с нулевого по третий. Для таких целей существуют срезы.</p>
+<p>Как написать срез? Практически так же, как индекс, то есть в квадратных скобках около названия списка. Но срез — это не один элемент, а несколько, то есть какой-то кусочек самого списка.</p>
+<p><code class="docutils literal notranslate"><span class="pre">название_списка[индекс_начала:</span> <span class="pre">индекс_конца]</span></code></p>
+<p>Нужно быть внимательным, потому что правый конец не включается в результат, то есть будут элементы до этого индекса, не включа/щие его.</p>
+<p>Рассмотрим на нашей корзине с продуктами. Прежде чем запускать код ниже, подумаем какой будет результат.
+Мы идём с нуля (начало списка) до элемента с индексом 2 (то есть до третьего элемента), не включая его.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Молоко&#39;, &#39;Хлеб&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Списки — это изменяемые объекты, поэтому над ними можно произодить преобразования: например, вставлять и удалять элементы, объединять списки.</p>
+</section>
+<section id="id4">
+<h3>Вставка элементов в список<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>Допустим, мы вспомнили, что нам нужны овощи, и захотели добавить в корзину ещё огурцы и помидоры.</p>
+<p>Добавить элементы в список можноис помощью нескольких магических функций:</p>
+<ul class="simple">
+<li><p>list.append(value) — добавление в конец списка,</p></li>
+<li><p>list.insert(index, value) — вставка по индексу.</p></li>
+</ul>
+<p>Как говорилось выше, о магии функций будет отдельный материал. А пока добавим овощи в корзину — в конец нашего списка.</p>
+<p>Зафиксируем изначальный размер корзины, проверим длину списка с помощью функции len.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purchase_cart</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Помидоры&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Распечатаем корзину с помощью функции print.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Молоко&#39;, &#39;Хлеб&#39;, &#39;Картофель&#39;, &#39;Фарш&#39;, &#39;Помидоры&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Видим, что в конец списка добавились помидоры.</p>
+<p>Проверим, изменилась ли длина списка с помощью той же функции len.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Длина списка увеличилась с 4 элементов на 5.</p>
+</section>
+<section id="id5">
+<h3>Удаление элементов из списка<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>Если покупать помидоры мы передумаем, их нужно будет удалить из корзины. Помидоры лежат в конце списка, поэтому их можно удалить с помощью функции pop. Она удаляет последний элемент и возвращает его (грубо говоря, показывает нам его).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purchase_cart</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Помидоры&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Допустим, мы хотим удалить фарш, но не знаем, какой это элемент по счёту. Можно использовать функцию remove, она удаляет элемент со значением, равным тому, что мы укажем.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purchase_cart</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;Фарш&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Если этого элемента нет, функция страшно ругается. Если мы попробуем удалить финики. Мы увидим ошибку</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span>                                <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">6348</span><span class="n">d22ee3a0</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">cell</span> <span class="n">line</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">purchase_cart</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;Финики&quot;</span><span class="p">)</span>
+
+<span class="ne">ValueError</span><span class="p">:</span> <span class="nb">list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<p>Мы уже сильно поменяли наш исходный список, что-то удалили, давайте пересоздадим его с нуля, чтобы можно было дальше проводить с ним операции.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purchase_cart</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Молоко&quot;</span><span class="p">,</span> <span class="s2">&quot;Хлеб&quot;</span><span class="p">,</span> <span class="s2">&quot;Картофель&quot;</span><span class="p">,</span> <span class="s2">&quot;Фарш&quot;</span><span class="p">,</span> <span class="s2">&quot;Помидоры&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Чтобы вместо помидоров положить огурцы, можно удалить помидоры и добавить в конец списка огурцы. Но можно просто получить элемент по индексу и заменить его.</p>
+<p>purchase_cart[-1] — это последний элемент в списке.</p>
+<p>len(purchase_cart) — это длина списка.</p>
+<p>(len(purchase_cart) - 1) — это индекс последнего элемента в списке.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Вариант 1</span>
+
+<span class="n">last_elem</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">purchase_cart</span><span class="p">[</span><span class="n">last_elem</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Огурцы&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Вариант 2</span>
+
+<span class="n">purchase_cart</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Огурцы&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Попробуем заменить третий элемент на бананы. Третий элемент имеет индекс 2, не забываем про это.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">purchase_cart</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Бананы&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">purchase_cart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Молоко&#39;, &#39;Хлеб&#39;, &#39;Бананы&#39;, &#39;Фарш&#39;, &#39;Огурцы&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2>Вывод по спискам<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>Итак, чему мы научились в данном разделе:</p>
+<ul class="simple">
+<li><p>Создавать корзину продуктов с помощью списка:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">purchase_cart</span> <span class="pre">=</span> <span class="pre">[&quot;Молоко&quot;,</span> <span class="pre">&quot;Хлеб&quot;,</span> <span class="pre">&quot;Картофель&quot;,</span> <span class="pre">&quot;Фарш&quot;,</span> <span class="pre">&quot;Помидоры&quot;]</span></code></p>
+<ul class="simple">
+<li><p>Добавлять в конец корзины новые продукты.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">purchase_cart.append(&quot;Помидоры&quot;)</span></code></p>
+<ul class="simple">
+<li><p>Удалять из корзины последний элемент:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">purchase_cart.pop()</span></code></p>
+<ul class="simple">
+<li><p>Удалять из корзины продукт по названию:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">purchase_cart.remove(&quot;Фарш&quot;)</span></code></p>
+<ul class="simple">
+<li><p>Заменять элементы в корзине на новые:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">purchase_cart[2]</span> <span class="pre">=</span> <span class="pre">&quot;Бананы&quot;</span></code></p>
+<p>Списки хороши тем, что их можно менять на ходу. Когда мы заранее знаем, что данные нужно будет менять в процессе работы, например добавлять или удалять из корзины продукты, список — отлично подходящая для этого структура данных.</p>
+<p>Но бывают и неизменяемые структуры.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tuple">
+<h1>Кортежи (<code class="docutils literal notranslate"><span class="pre">tuple</span></code>)<a class="headerlink" href="#tuple" title="Link to this heading">#</a></h1>
+<p>Кортеж (англ. tuple) — неизменяемый список. Как только мы создали кортеж, менять его больше нельзя.</p>
+<p>Для чего же нужны кортежи, если их нельзя менять? Они быстрее чем списки. Если заранее известно, что данные не будут меняться, лучше использовать кортежи.</p>
+<p>Основное преимущество кортежей в том, что они могут использоваться в качестве ключей в словарях, а списки не могут. Сейчас може быть непонятно, что такое ключи в словарях, но об этом ниже.</p>
+<section id="id7">
+<h2>Создание кортежа<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>Чтобы создать непустой кортеж, достаточно перечислить элементы и обернуть их в круглые скобки.</p>
+<p>Давай создадим кортеж из школьных предметов. Возьмём всего 3 предмета для наглядности.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lessons_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Математика&quot;</span><span class="p">,</span> <span class="s2">&quot;Физика&quot;</span><span class="p">,</span> <span class="s2">&quot;Информатика&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Как и в случае со списками, можно узнать длину кортежа и индекс элементов в нём, можно распечатать элемент по индексу.</p>
+<p>Но для кортежей неприменимы методы, изменяющие данные: append, insert, remove, pop, присвоение элементов по индексу, как мы делали выше с бананами.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lessons_tuple</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Математика&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lessons_tuple</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Попробуем присвоить новое значение элементу кортежа.</p>
+<p><code class="docutils literal notranslate"><span class="pre">lessons_tuple[2]</span> <span class="pre">=</span> <span class="pre">&quot;История&quot;</span></code></p>
+<p>Получим ошибку следующего вида:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">54</span><span class="o">-</span><span class="mi">91</span><span class="n">a5ced16488</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">cell</span> <span class="n">line</span><span class="p">:</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">lessons_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;История&quot;</span>
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;tuple&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Это потому что кортеж нельзя менять: каким мы его создали, таким он и остаётся.</p>
+</div></blockquote>
+<p>Но кортеж можно преобразовать в список. А списки менять легко. Обратное преобразование в кортеж тоже возможно.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">lessons_tuple</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Математика&#39;, &#39;Физика&#39;, &#39;Информатика&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">tuple</span><span class="p">(</span><span class="n">lessons_tuple</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Математика&#39;, &#39;Физика&#39;, &#39;Информатика&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h2>Вывод по кортежам<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Кортеж — неизменяемая структура данных.</p></li>
+<li><p>Из кортежа можно получить список, но это уже будет новый объект. Сам исходный кортеж не меняется.
+Аналогично из списка можно получить кортеж.</p></li>
+<li><p>В кортежах есть длина и индексы по аналогии со списками.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="dict">
+<h1>Словари (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)<a class="headerlink" href="#dict" title="Link to this heading">#</a></h1>
+<p>Словарями в Python называются наборы значений аналогично спискам и кортежам. Отличие в том, что каждому элементу словаря соответствуют ключ и связанное с ним значение.</p>
+<section id="id9">
+<h2>Создание словаря<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<p>Например, у нас есть дневник школьника, где указан предмет и оценка за него. Дневник можно представить в виде списка.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marks_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Физика&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;Математика&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;Информатика&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Если спросить, какая оценка у школьника по информатике, можно пробежаться глазами и увидеть оценку 3, но если предметов больше 10, 100, 1000? Кажется, здесь уже будет не очень удобно пробегаться глазами.</p>
+<p>Что же делать?</p>
+<p>Если мы сохраним данные в словаре, то будет выглядеть так:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marks_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Физика&quot;</span><span class="p">:</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;Математика&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;Информатика&quot;</span><span class="p">:</span> <span class="s2">&quot;3&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Для разделения каждой пары «ключ:значение» используется двоеточие, ключи и значения мы записали в двойных кавычках.</p>
+<p>В данном примере ключ — это предмет, например физика.
+Значение — это оценка, например 5.</p>
+<p>Обрати внимание, что элементы словаря заключены в фигурные (а не круглые или квадратные) скобки.</p>
+<p>Распечатаем оценку за математику, использовав название этого предмета в качестве ключа.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">marks_dict</span><span class="p">[</span><span class="s2">&quot;Математика&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ключ пишется в квадратных скобках аналогично индексу в списках, но это не одно и тоже. Пожалуйста, не путай.</p>
+</section>
+<section id="id10">
+<h2>Методы словарей<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>Рассмотрим основные методы.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">keys()</span></code>: возвращает список ключей.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">values()</span></code>: возвращает список значений.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">items()</span></code>: возвращает список пар ключ-значение.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Получаем все предметы в виде списка</span>
+
+<span class="n">marks_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;Физика&#39;, &#39;Математика&#39;, &#39;Информатика&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Получаем все значения в виде списка</span>
+
+<span class="n">marks_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([&#39;5&#39;, &#39;4&#39;, &#39;3&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Получаем ключи и значения в виде списка, внутри которого кортежи</span>
+
+<span class="n">marks_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_items([(&#39;Физика&#39;, &#39;5&#39;), (&#39;Математика&#39;, &#39;4&#39;), (&#39;Информатика&#39;, &#39;3&#39;)])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Представим, что школьник пересдал математику и получил за нее 5. Так держать! Обновим дневник.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marks_dict</span><span class="p">[</span><span class="s2">&quot;Математика&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;5&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marks_dict</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Физика&#39;: &#39;5&#39;, &#39;Математика&#39;: &#39;5&#39;, &#39;Информатика&#39;: &#39;3&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ещё школьник сдал химию. Её нет в дневнике, давай добавим. Для этого нужно использовать название предмета в качестве ключа и записать значение.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">marks_dict</span><span class="p">[</span><span class="s2">&quot;Химия&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;3&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h2>Ограничения на ключи словарей<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<section id="id12">
+<h3>Уникальность ключей<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>Каждый ключ в словаре должен быть уникальным. Если попытаться добавить элемент с уже существующим ключом, новое значение заменит старое.</p>
+</section>
+<section id="id13">
+<h3>Неизменяемость ключей<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p>Ключи словарей должны быть неизменяемыми объектами.
+Мы не можем в качестве ключа использовать список предметов, но можем использовать один предмет.</p>
+</section>
+</section>
+<section id="id14">
+<h2>Вывод по словарям<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Словари содержат в себе ключ и значение. По ключу можно получить значение.</p></li>
+<li><p>Словари можно менять, в отличие от кортежей.</p></li>
+<li><p>Из словаря можно получить список значений, ключей или и того и другого.</p></li>
+<li><p>В словарях нет индексов, есть ключи.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="set">
+<h1>Множества (<code class="docutils literal notranslate"><span class="pre">set</span></code>)<a class="headerlink" href="#set" title="Link to this heading">#</a></h1>
+<p>Множество (англ. set) в Python — это неупорядоченная коллекция уникальных элементов. Оно очень похожи на математическое. Множество — изменяемый тип данных. Важная особенность множеств — это уникальность. Во множестве не могут повторяться значения.</p>
+<p>Множество можно использовать, когда не хотим задумываться о повторяющихся элементах. Например, если мы хотим знать имена школьников в классе, но имена только уникальные, без повторений.</p>
+<section id="id15">
+<h2>Создание множества<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<p>Чтобы создать множество, нужно перечислить его содержимое и обернуть в фигурные скобки.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Ваня&quot;</span><span class="p">,</span> <span class="s2">&quot;Петя&quot;</span><span class="p">,</span> <span class="s2">&quot;Аня&quot;</span><span class="p">,</span> <span class="s2">&quot;Маша&quot;</span><span class="p">,</span> <span class="s2">&quot;Аня&quot;</span><span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Ваня&#39;, &#39;Петя&#39;, &#39;Аня&#39;, &#39;Маша&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Обрати внимание: мы создаём дублирующиеся имена (Аня), однако во множестве содержатся только уникальные значения.</p>
+</section>
+<section id="id16">
+<h2>Операции со множествами<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Объединение (<code class="docutils literal notranslate"><span class="pre">union()</span></code>).</p></li>
+<li><p>Пересечение (<code class="docutils literal notranslate"><span class="pre">intersection()</span></code>).</p></li>
+<li><p>Разность (<code class="docutils literal notranslate"><span class="pre">difference()</span></code>).</p></li>
+<li><p>Симметричная разность (<code class="docutils literal notranslate"><span class="pre">symmetric_difference()</span></code>).</p></li>
+</ul>
+<p>Давай создадим 2 школьных класса и перечислим в них имена.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names_class_a</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Ваня&quot;</span><span class="p">,</span> <span class="s2">&quot;Петя&quot;</span><span class="p">,</span> <span class="s2">&quot;Аня&quot;</span><span class="p">,</span> <span class="s2">&quot;Маша&quot;</span><span class="p">,</span> <span class="s2">&quot;Аня&quot;</span><span class="p">}</span>
+<span class="n">names_class_b</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Миша&quot;</span><span class="p">,</span> <span class="s2">&quot;Вова&quot;</span><span class="p">,</span> <span class="s2">&quot;Аня&quot;</span><span class="p">,</span> <span class="s2">&quot;Дима&quot;</span><span class="p">,</span> <span class="s2">&quot;Сережа&quot;</span><span class="p">}</span>
+
+
+<span class="c1"># Допустим, мы хотим объединить имена в двух классах</span>
+
+<span class="n">class_a_b</span> <span class="o">=</span> <span class="n">names_class_a</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">names_class_b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">class_a_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Ваня&#39;, &#39;Миша&#39;, &#39;Петя&#39;, &#39;Аня&#39;, &#39;Маша&#39;, &#39;Сережа&#39;, &#39;Дима&#39;, &#39;Вова&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Найдём одинаковые имена в классах.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uniq_names</span> <span class="o">=</span> <span class="n">names_class_a</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">names_class_b</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">uniq_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Аня&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Найдём имена, которые есть только в одном из классов.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">different_names</span> <span class="o">=</span> <span class="n">names_class_a</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">names_class_b</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">different_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Ваня&#39;, &#39;Маша&#39;, &#39;Петя&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id17">
+<h2>Вывод по множествам<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Множества можно изменять.</p></li>
+<li><p>Во множестве нет повторяющихся элементов.</p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id18">
+<h1>Вывод<a class="headerlink" href="#id18" title="Link to this heading">#</a></h1>
+<p>Итак, что мы узнали нового в этом уроке?</p>
+<ul class="simple">
+<li><p>Мы рассмотрели списки и как они создаются на примере корзины покупок.</p></li>
+<li><p>Рассмотрели индексацию и методы работы со списками.</p></li>
+<li><p>Узнали, чем кортежи отличаются от списков.</p></li>
+<li><p>Изучили словари и методы работы с ними на примере дневника оценок.</p></li>
+<li><p>Рассмотрели множества и их особенности, а также основные методы на примере имен школьников в классе.</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "maximkeremet/tinkoff-python-course",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./01_python_101"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_data_structures_basic.html"
+       title="предыдущая страница">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">назад</p>
+        <p class="prev-next-title">Базовые типы данных</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_conditional_statements.html"
+       title="следующая страница">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">вперёд</p>
+        <p class="prev-next-title">Условные конструкции</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Содержание
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Составные структуры данных в Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list">Списки (<code class="docutils literal notranslate"><span class="pre">list</span></code>)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Создание списка</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Индексация в списках</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Срезы в списках</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Вставка элементов в список</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Удаление элементов из списка</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Вывод по спискам</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuple">Кортежи (<code class="docutils literal notranslate"><span class="pre">tuple</span></code>)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Создание кортежа</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Вывод по кортежам</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#dict">Словари (<code class="docutils literal notranslate"><span class="pre">dict</span></code>)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Создание словаря</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Методы словарей</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Ограничения на ключи словарей</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Уникальность ключей</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Неизменяемость ключей</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Вывод по словарям</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#set">Множества (<code class="docutils literal notranslate"><span class="pre">set</span></code>)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Создание множества</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Операции со множествами</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Вывод по множествам</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Вывод</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

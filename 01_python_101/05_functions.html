@@ -1,0 +1,1730 @@
+
+<!DOCTYPE html>
+
+
+<html lang="ru" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Функции в Python &#8212; Data разработка на Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=576a2c22"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=29b1f277"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_python_101/05_functions';</script>
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Устанавливаем IDE" href="06_installing_ide_tools.html" />
+    <link rel="prev" title="Циклы в Python" href="04_loops.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ru"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Перейти к основному содержанию</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo2.svg" class="logo__image only-light" alt="Data разработка на Python - Home"/>
+    <script>document.write(`<img src="../_static/logo2.svg" class="logo__image only-dark" alt="Data разработка на Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Поиск" aria-label="Поиск" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Поиск</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Приветствие курса
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python 101</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_interpreter.html">Об интерпретаторе Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_structures_basic.html">Базовые типы данных</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="02_data_structures_complex.html">Составные структуры данных в Python</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="03_conditional_statements.html">Условные конструкции</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_loops.html">Циклы в Python</a></li>
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Функции в Python</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_installing_ide_tools.html">Устанавливаем IDE</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="07_virtualenv_and_poetry.html">Виртуальные окружения в Python и управление зависимостями с помощью Poetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_oop.html">Концепция объектно-ориентированного программирования (ООП) в Python</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/maximkeremet/tinkoff-python-course/blob/main/book/01_python_101/05_functions.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/maximkeremet/tinkoff-python-course/edit/main/book/01_python_101/05_functions.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/maximkeremet/tinkoff-python-course/issues/new?title=Issue%20on%20page%20%2F01_python_101/05_functions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Открыть вопрос"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Загрузите эту страницу">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/01_python_101/05_functions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Скачать исходный файл"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Распечатать в PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Полноэкранный режим"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="светлая/темная" aria-label="светлая/темная" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Поиск" aria-label="Поиск" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Функции в Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Содержание </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Функции в Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Функции в Python: введение и основы</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Встроенные функции</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Параметры и аргументы функции</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Собственные функции в Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Пустое тело функции</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#print-return">Функция <code class="docutils literal notranslate"><span class="pre">print()</span></code> вместо/с оператором <code class="docutils literal notranslate"><span class="pre">return</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Определение параметров в пользовательских функциях</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Результат выполнения функции</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Виды переменных</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#args-kwargs">Параметры с оператором распаковки <code class="docutils literal notranslate"><span class="pre">**args</span></code> и <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#args"><code class="docutils literal notranslate"><span class="pre">*args</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kwargs"><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Заключение</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python">
+<h1>Функции в Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h1>
+<p>В этом уроке ты узнаешь:</p>
+<ul class="simple">
+<li><p>что такое функции в Python;</p></li>
+<li><p>чем встроенные функции отличаются от собственных;</p></li>
+<li><p>как вызвать функции и работать с ними;</p></li>
+<li><p>какие дополнительные возможности бывают у функции.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Функции в Python: введение и основы<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Функции — это ключевой инструмент, который помогает структурировать код, делая его более читаемым и поддерживаемым. Понимать, как они работают, важно, чтобы использовать максимум возможностей Python. Перед тем, как погрузимся в детали, давай разберёмся, что такое функция в контексте математики и программирования.</p>
+<p>Функция в математике — это способ отображения значений из одного множества в другое. Проще говоря, функция принимает одно значение в качестве аргумента и возвращает другое значение, например:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>Тут функция, которая принимает значение x и возвращает квадрат этого значения.</p>
+<p>В Python функция — это блок кода, который можно вызвать по его имени. Каждый такой изолированный блок кода выполняет определённую задачу.</p>
+<p>Например:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="n">square</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+</pre></div>
+</div>
+</div>
+</div>
+<p>А тут функция на Python, которая принимает аргумент x и возвращает его квадрат.</p>
+<p>Отлично! Теперь переходим к интересному, а именно к синтаксису функций в Python. Создаётся функция следующим образом:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="o">&lt;</span><span class="n">имя</span> <span class="n">функции</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&lt;</span><span class="n">аргументы</span> <span class="n">функции</span><span class="o">&gt;</span><span class="p">):</span>
+    <span class="o">&lt;</span><span class="n">тело</span> <span class="n">функции</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Имя функции должно соответствовать тем же правилам, что имена переменных:</p>
+<ul class="simple">
+<li><p>имя функции может содержать строчные буквы английского алфавита, цифры и знаки подчёркивания;</p></li>
+<li><p>аргументы функции являются её параметрами, которые становятся переменными внутри тела функции;</p></li>
+<li><p>в теле функции содержится код, который оперирует аргументами и другими переменными, а затем возвращает результат с помощью оператора <code class="docutils literal notranslate"><span class="pre">return</span></code>.</p></li>
+</ul>
+<p>После возврата значения функция завершает свою работу, а интерпретатор продолжает выполнение программы, используя возвращённое значение.</p>
+<p>Хорошо, разобрались, а зачем вообще использовать функциии? Рассмотрим их преимущества на примере Светы.</p>
+<p>Она управляет интернет-магазином, в который каждый день поступает большое количество заказов. Чтобы обработать эти заказы эффективно, Света создаёт функции, выполняющие определённые задачи.</p>
+<p>Например, есть функция «обработка заказа», которая принимает информацию о заказе (такую как товары, адрес доставки, контактные данные клиента) в качестве аргументов. Внутри функции происходит обработка этой информации: Света проверяет наличие товаров на складе, расчитывает стоимость доставки, формирует уведомление для клиента). Затем функция возвращает подготовленный заказ для отправки.</p>
+<p>А теперь посмотрим на два варианта развития событий. Код без функции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Заказы</span>
+<span class="n">order_1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="s2">&quot;Laptop&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">}</span>
+<span class="n">order_2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="s2">&quot;Smartphone&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mi">800</span><span class="p">}</span>
+
+<span class="c1"># Обработка заказа 1</span>
+<span class="n">available_products</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Laptop&quot;</span><span class="p">,</span> <span class="s2">&quot;Smartphone&quot;</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">order_1</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">available_products</span><span class="p">:</span>
+    <span class="n">total_price</span> <span class="o">=</span> <span class="n">order_1</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">50</span>  <span class="c1"># Стоимость доставки</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Обрабатываем заказ: </span><span class="si">{</span><span class="n">order_1</span><span class="p">[</span><span class="s1">&#39;product&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, общая стоимость: </span><span class="si">{</span><span class="n">total_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Товар не доступен&quot;</span><span class="p">)</span>
+
+<span class="c1"># Обработка заказа 2</span>
+<span class="n">available_products</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Laptop&quot;</span><span class="p">,</span> <span class="s2">&quot;Smartphone&quot;</span><span class="p">]</span>
+<span class="k">if</span> <span class="n">order_1</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">available_products</span><span class="p">:</span>
+    <span class="n">total_price</span> <span class="o">=</span> <span class="n">order_2</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">50</span>  <span class="c1"># Стоимость доставки</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Обрабатываем заказ: </span><span class="si">{</span><span class="n">order_2</span><span class="p">[</span><span class="s1">&#39;product&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, общая стоимость: </span><span class="si">{</span><span class="n">total_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Товар не доступен&quot;</span><span class="p">)</span>
+
+<span class="c1"># Обработка заказа n</span>
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Обрабатываем заказ: Laptop, общая стоимость: 1050
+Обрабатываем заказ: Smartphone, общая стоимость: 850
+</pre></div>
+</div>
+</div>
+</div>
+<p>А теперь вариант с функцией:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Функция для обработки заказа</span>
+<span class="k">def</span> <span class="nf">process_order</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">available_products</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">order</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">available_products</span><span class="p">:</span>
+        <span class="n">total_price</span> <span class="o">=</span> <span class="n">order</span><span class="p">[</span><span class="s2">&quot;price&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">50</span>  <span class="c1"># Стоимость доставки</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Обрабатываем заказ: </span><span class="si">{</span><span class="n">order</span><span class="p">[</span><span class="s1">&#39;product&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, общая стоимость: </span><span class="si">{</span><span class="n">total_price</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Товар не доступен&quot;</span><span class="p">)</span>
+
+<span class="c1"># Заказы</span>
+<span class="n">order_1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="s2">&quot;Laptop&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">}</span>
+<span class="n">order_2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;product&quot;</span><span class="p">:</span> <span class="s2">&quot;Smartphone&quot;</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="mi">800</span><span class="p">}</span>
+
+<span class="c1"># Список доступных товаров</span>
+<span class="n">available_products</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Laptop&quot;</span><span class="p">,</span> <span class="s2">&quot;Smartphone&quot;</span><span class="p">]</span>
+
+<span class="c1"># Обработка заказов с использованием функции</span>
+<span class="n">process_order</span><span class="p">(</span><span class="n">order_1</span><span class="p">,</span> <span class="n">available_products</span><span class="p">)</span>
+<span class="n">process_order</span><span class="p">(</span><span class="n">order_2</span><span class="p">,</span> <span class="n">available_products</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Обрабатываем заказ: Laptop, общая стоимость: 1050
+Обрабатываем заказ: Smartphone, общая стоимость: 850
+</pre></div>
+</div>
+</div>
+</div>
+<p>С функцией мы избавляемся от дублирования, скрываем под ней большие блоки кода, тем самым делая его компактным. Без визуального шума код легко читать и Свете, и её коллегам.</p>
+<p>Хорошо, разобрались с тем, что такое функция. Следующий шаг — в глубину. Рассмотрим такие большие темы как встроенные функции и собственные функции. Начнём со встроенных.</p>
+<section id="id2">
+<h2>Встроенные функции<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Встроенные функции в Python предоставляют широкий спектр инструментов для выполнения различных задач, в том числе для работы с числами, строками, списками и другими структурами данных. Разберём на примерах.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Функция abs() возвращает абсолютное значение числа</span>
+<span class="n">num</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+<span class="n">absolute_value</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Абсолютное значение числа:&quot;</span><span class="p">,</span> <span class="n">absolute_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Абсолютное значение числа: 10
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Функция round() используется для округления числа до определенного количества знаков после запятой</span>
+<span class="n">num</span> <span class="o">=</span> <span class="mf">3.14159</span>
+<span class="n">rounded_num</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Округление до двух знаков после запятой</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Округленное число:&quot;</span><span class="p">,</span> <span class="n">rounded_num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Округленное число: 3.14
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Функция sorted() используется для сортировки элементов в списке по возрастанию или убыванию</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">sorted_numbers</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>  <span class="c1"># Сортировка по возрастанию</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Отсортированный список:&quot;</span><span class="p">,</span> <span class="n">sorted_numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Отсортированный список: [1, 2, 3, 5, 8]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Теперь, когда мы ознакомились с некоторыми встроенными функциями, рассмотрим функцию <code class="docutils literal notranslate"><span class="pre">pow()</span></code>, которая используется для возведения числа в степень. Это упростит понимания дальнейшего материала.</p>
+<p>Синтаксис функции: <code class="docutils literal notranslate"><span class="pre">pow(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code></p>
+<ol class="arabic simple">
+<li><p>x — число, основание;</p></li>
+<li><p>y — число, показатель степени;</p></li>
+<li><p>z (необязательно) — число, используемое для модуля.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>В примере выше мы передаём число 2 в качестве основания и число 3 в качестве показателя степени.</p>
+</section>
+<section id="id3">
+<h2>Параметры и аргументы функции<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Параметры функции — это переменные, которые ожидают получить значения при вызове функции.</p></li>
+<li><p>Аргументы функции — это конкретные значения, которые передаются в параметры функции при её вызове.</p></li>
+</ul>
+<p>Рассмотрим на примере функции <code class="docutils literal notranslate"><span class="pre">pow()</span></code>.
+Её синтаксис: <code class="docutils literal notranslate"><span class="pre">pow(x,</span> <span class="pre">y,</span> <span class="pre">z)</span></code>. В данном случае x, y, z — это параметры. Аргументами является значения. Например, если <code class="docutils literal notranslate"><span class="pre">pow(2,</span> <span class="pre">3,</span> <span class="pre">1)</span></code>, то 2, 3 и 1 — аргументы функции.</p>
+<p>Есть два вида аргументов: позиционные и именнованные. Позиционные аргументы передаются в том порядке, в котором они ожидаются функцией, например:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Итак, здесь:</p>
+<ul class="simple">
+<li><p>аргумент 2 — основание степени;</p></li>
+<li><p>аргумент 10 — показатель степени.</p></li>
+</ul>
+<p>Эти значения передаются функции <code class="docutils literal notranslate"><span class="pre">pow()</span></code> в порядке, в котором они ожидаются, то есть в том порядке, который заложил программист при создании этой функции: первым идет основание, затем показатель степени. Таким образом, при вызове <code class="docutils literal notranslate"><span class="pre">pow(2,</span> <span class="pre">10)</span></code> число 2 возводится в степень 10, результатом будет 1024.</p>
+<p>А теперь про именованные аргументы:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">exp</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="c1"># base=2 - мы придали аргументу 2 имя base, аналогично со вторым аргументом</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1024
+</pre></div>
+</div>
+</div>
+</div>
+<p>У каждой функции есть свои значения по умолчанию, например, у функции <code class="docutils literal notranslate"><span class="pre">pow()</span></code> по умолчанию два аргумента (основание степени и показатель степени) и третий аргумент необязательный. Такие аргументы ещё называют позиционными, позиция первого аргумента основание степени, значение 2 и так далее:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Важно отметить, что функция может принимать разное количество параметров: один, два, несколько или вообще не принимать их. Например, функция <code class="docutils literal notranslate"><span class="pre">print()</span></code>, если мы не укажем параметр, выдаёт пустую строку.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Строка №1&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Строка №3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Строка №1
+
+Строка №3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Если у тебя возникают вопросы о параметрах и возращаемых значениях какой-либо функции, рекомендуем заглянуть в документацию. Например, в этой подтеме ты рассматривал функцию <code class="docutils literal notranslate"><span class="pre">pow()</span></code>. К ней, как и ко многим другим встроенныем функциям, есть <a class="reference external" href="https://docs.python.org/3/library/functions.html#pow">подробная документация на английском</a>.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id4">
+<h1>Собственные функции в Python<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<p>Хотя в Python есть обширный набор встроенных функций, иногда для выполнения конкретных задач нужно создать собственные функции. Это делается так:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Создадим функцию, которая будет находить сумму двух чисел</span>
+<span class="k">def</span> <span class="nf">add_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># Вычисляем сумму чисел</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="c1"># Возвращаем результат</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># Вызываем функцию и передаём ей два числа</span>
+<span class="n">add_numbers</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Теперь разберём каждый компонент этого кода.</p>
+<ul class="simple">
+<li><p>Новая функция создаётся с помощью специального слова <code class="docutils literal notranslate"><span class="pre">def</span></code>. Оно указывает, что мы хотим определить блок кода для выполнения определённой задачи.</p></li>
+<li><p>Затем пишется название функции и её параметры (в данном случае, <code class="docutils literal notranslate"><span class="pre">a</span></code> и <code class="docutils literal notranslate"><span class="pre">b</span></code>). Название придумывает программист.</p></li>
+<li><p>После двоеточия и новой строки с отступом следует тело функции, где указываются действия, выполняемые при вызове функции. Кстати, отступов нужно делать либо четыре пробела, либо 1 Tab;</p></li>
+<li><p>И последнее, ключевое слово <code class="docutils literal notranslate"><span class="pre">return</span></code> возвращает результат работы функции.</p></li>
+</ul>
+<p>Теперь можно использовать эту функцию, указав её название и передав соответствующие значения в скобках. Например, вызов <code class="docutils literal notranslate"><span class="pre">add_numbers(3,</span> <span class="pre">5)</span> </code>вернёт результат, равный 8.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Закрепим</span>
+<span class="c1"># def add_numbers(a, b)</span>
+<span class="c1"># add_numbers - название функции</span>
+<span class="c1"># (a, b) - аргументы функции</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id5">
+<h2>Пустое тело функции<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>При создании функции в Python важно помнить, что тело функции должно содержать как минимум один оператор, такой как <code class="docutils literal notranslate"><span class="pre">return</span></code> или ключевое слово <code class="docutils literal notranslate"><span class="pre">pass</span></code>. Рассмотрим на примерах:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Функция с использованием оператора pass</span>
+<span class="k">def</span> <span class="nf">my_function</span><span class="p">():</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Функция с использованием ключевого слова return, чтобы вернуть определённое значение</span>
+<span class="k">def</span> <span class="nf">another_function</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">42</span>
+
+<span class="c1"># Вызов функций</span>
+<span class="n">my_function</span><span class="p">()</span>
+<span class="n">another_function</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>42
+</pre></div>
+</div>
+</div>
+</div>
+<p>Комментарий к коду:</p>
+<ul class="simple">
+<li><p>В функции <code class="docutils literal notranslate"><span class="pre">my_function()</span></code> используется оператор <code class="docutils literal notranslate"><span class="pre">pass</span></code>, который показывает, что функция не содержит кода. Это может быть использовано для временного заполнения функции или для её определения без кода.</p></li>
+<li><p>Функция <code class="docutils literal notranslate"><span class="pre">another_function()</span></code> возвращает значение 42 при вызове. Это означает, что при вызове функции будет получено число 42.</p></li>
+</ul>
+<p>Обрати внимание, что вызов функции <code class="docutils literal notranslate"><span class="pre">my_function()</span></code> не приводит к выполнению каких-либо действий, поскольку она не содержит кода. Однако вызов функции <code class="docutils literal notranslate"><span class="pre">another_function()</span></code> вернёт значение 42, которое можно сохранить в переменной или использовать в программе дальше.</p>
+</section>
+<section id="print-return">
+<h2>Функция <code class="docutils literal notranslate"><span class="pre">print()</span></code> вместо/с оператором <code class="docutils literal notranslate"><span class="pre">return</span></code><a class="headerlink" href="#print-return" title="Link to this heading">#</a></h2>
+<p>Итак, чтобы вернуть значение из функции, используют оператор <code class="docutils literal notranslate"><span class="pre">return</span></code>. Но результат работы функции ещё можно вывести на экран с помощью функции <code class="docutils literal notranslate"><span class="pre">print().</span></code></p>
+<p>Вот как это работает:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_area</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Площадь круга равна:&quot;</span><span class="p">,</span> <span class="n">area</span><span class="p">)</span>
+<span class="n">calculate_area</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Площадь круга равна: 78.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_area</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">area</span>
+<span class="n">calculate_area</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>78.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>И в случает с <code class="docutils literal notranslate"><span class="pre">return</span></code>, и в случае с <code class="docutils literal notranslate"><span class="pre">print()</span></code> способ отобразить результат на экране один и тот же. Но есть значительные отличия:</p>
+<ul class="simple">
+<li><p>Когда используется ключевое слово <code class="docutils literal notranslate"><span class="pre">return</span></code>, функция возвращает значение (например, значение площади круга) и завершает свою работу.</p></li>
+<li><p>Функция <code class="docutils literal notranslate"><span class="pre">print()</span></code> просто отображает это значение пользователю на экране (например, то же значение площади круга), не сохраняя это значение в программе для дальнейшего использования.</p></li>
+</ul>
+<p>В случае использования функции <code class="docutils literal notranslate"><span class="pre">print()</span></code> в связке с <code class="docutils literal notranslate"><span class="pre">return</span></code> результат работы функции будет отображен на экране, но это значение не будет сохранено в программе для последующего использования. Вот как это реализовать:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_area</span><span class="p">(</span><span class="n">radius</span><span class="p">):</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="mf">3.14</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">area</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">calculate_area</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Площадь круга равна:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Площадь круга равна: 78.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Получился аналогичный результат. Таким образом, в переменной <code class="docutils literal notranslate"><span class="pre">result</span></code> будет храниться результат выполнения функции <code class="docutils literal notranslate"><span class="pre">calculate_area()</span></code>, а затем этот результат будет выведен на экран с помощью <code class="docutils literal notranslate"><span class="pre">print()</span></code>.</p>
+</section>
+<section id="id6">
+<h2>Определение параметров в пользовательских функциях<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>В Python у пользовательских функций те же возможности для определения параметров, что у встроенных. Поддерживаются как позиционные, так и именованные параметры.</p>
+<p>Рассмотрим пример функции, которая принимает два параметра, складывает их и возвращает сумму:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Определим функцию с параметрами a и b</span>
+<span class="k">def</span> <span class="nf">add_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># Получим сумму параметров</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="c1"># Вызов функции будет осуществлен с одним аргументом по порядку и одним аргументом с указанием имени:</span>
+<span class="n">add_numbers</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+</div>
+</div>
+<p>Пользовательская функция может содержать значения по умолчанию для её параметров. Это подразумевает, что при вызове функции значения параметров могут оставаться неопределёнными, и в этом случае будут использованы значения по умолчанию:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Создадим функцию с параметрами a и b, которые имеют значения по умолчанию</span>
+<span class="k">def</span> <span class="nf">add_numbers_default</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="c1"># Вызов функции без указания параметров</span>
+<span class="n">add_numbers_default</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Более того, возможно определить пользовательскую функцию и без включения параметров.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Эта функция просто выводит текст</span>
+<span class="k">def</span> <span class="nf">print_message</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello, superhero!&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Вызовем функцию для вывода текста</span>
+<span class="n">print_message</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello, superhero!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id7">
+<h2>Результат выполнения функции<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>Функция имеет возможность возвращать разнообразные типы данных. Рассмотрим несколько примеров.</p>
+<p>Пример 1. Возвращение списка чисел от 0 до заданного числа.</p>
+<p>Предположим, у нас есть функция, которая принимает на вход число и возвращает список чисел от 0 до этого числа (не включая само число).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_sequence</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">sequence</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">sequence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sequence</span>
+<span class="c1"># Результат вызова функции - список чисел от 0 до 4</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">generate_sequence</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Пример 2. Генерация результата из функции, возвращающей несколько значений.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_info</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Глеб&#39;</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="mi">45</span>
+    <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span>
+
+
+<span class="c1"># Получим имя и возраст из функции</span>
+<span class="n">name</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="n">get_info</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Глеб 45
+</pre></div>
+</div>
+</div>
+</div>
+<p>Если результат вызова функции записать в одну переменную, получится кортеж.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_info</span><span class="p">():</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Глеб&#39;</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="mi">45</span>
+    <span class="k">return</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span>
+
+
+<span class="c1"># Получим кортеж с именем и возрастом</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">get_info</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;Глеб&#39;, 45)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Пример 3. Генерация результата из функции с возвращением логических значений</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_even</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+<span class="c1"># Проверим, является ли число 10 четным</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">is_even</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h2>Виды переменных<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<p>В программировании существуют переменные с различной областью видимости:</p>
+<ul class="simple">
+<li><p>доступные в любой точке программы (глобальные),</p></li>
+<li><p>доступные исключительно внутри определённой функции (локальные),</p></li>
+<li><p>доступные во вложенных в другие функции, где область видимости переменной не ограничена локальной областью. (нелокальные),</p></li>
+<li><p>предопределённые в языке программирования и доступные без дополнительного объявления (встроенные).</p></li>
+</ul>
+<p>Под областью видимости подразумевается место, где было присвоено значение переменной и, соотвественно, осуществляется поиск по этому имени.</p>
+<p>Давай разбираться на примерах.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Объявим глобальную переменную за пределами функции</span>
+<span class="n">global_var</span> <span class="o">=</span> <span class="s1">&#39;Олег&#39;</span>
+
+<span class="c1"># После этого мы применяем её внутри функции</span>
+<span class="k">def</span> <span class="nf">show_global_var</span><span class="p">():</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">global_var</span><span class="p">)</span>
+
+<span class="n">show_global_var</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Олег
+</pre></div>
+</div>
+</div>
+</div>
+<p>Мы установили глобальную переменную под названием <code class="docutils literal notranslate"><span class="pre">global_var</span></code> и без проблем применили её в функции <code class="docutils literal notranslate"><span class="pre">show_global_var()</span></code>. Но не всегда получается так же легко использовать эту переменную за пределами функции.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Давай разработаем функцию, где мы определим переменную внутри её тела</span>
+<span class="k">def</span> <span class="nf">show_local_var</span><span class="p">():</span>
+  <span class="n">local_var</span> <span class="o">=</span> <span class="s1">&#39;Алиса&#39;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">local_var</span><span class="p">)</span>
+
+<span class="n">show_local_var</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Алиса
+</pre></div>
+</div>
+</div>
+</div>
+<p>Вызов функции <code class="docutils literal notranslate"><span class="pre">show_local_var()</span></code> прошёл успешно, однако обращение к переменной <code class="docutils literal notranslate"><span class="pre">local_var</span></code> вне данной функции приведёт к ошибке, так как область видимости переменной <code class="docutils literal notranslate"><span class="pre">local_var</span></code> ограничена именно этой функцией.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_var</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">28</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">local_var</span>
+
+<span class="ne">NameError</span>: name &#39;local_var&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Проблема возникает из-за ограничения области видимости переменной <code class="docutils literal notranslate"><span class="pre">local_var</span></code> функцией <code class="docutils literal notranslate"><span class="pre">show_local_var()</span></code>. Чтобы расширить доступность переменной на весь код программы, можно применить ключевое слово <code class="docutils literal notranslate"><span class="pre">global</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_global_var</span><span class="p">():</span>
+  <span class="k">global</span> <span class="n">local_var</span>
+  <span class="n">local_var</span> <span class="o">=</span> <span class="s1">&#39;Алиса&#39;</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">local_var</span><span class="p">)</span>
+
+<span class="n">make_global_var</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Алиса
+</pre></div>
+</div>
+</div>
+</div>
+<p>Теперь переменная <code class="docutils literal notranslate"><span class="pre">local_var</span></code> доступна ВНЕ программы.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">local_var</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Алиса&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Рассмотрим ситуацию, когда есть две переменные с одинаковым именем, одна из которых глобальная, а другая — локальная.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Создаём глобальную переменную</span>
+<span class="n">global_num</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="k">def</span> <span class="nf">print_num</span><span class="p">():</span>
+  <span class="c1"># После чего определяем переменную на уровне локальной области</span>
+  <span class="n">local_num</span> <span class="o">=</span> <span class="mi">10</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Local number:&#39;</span><span class="p">,</span> <span class="n">local_num</span><span class="p">)</span>
+
+<span class="n">print_num</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Local number: 10
+</pre></div>
+</div>
+</div>
+</div>
+<p>В данном случае функция всегда будет использовать локальную переменную.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Глобальная переменная остаётся неизменной</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Global number:&#39;</span><span class="p">,</span> <span class="n">global_num</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Global number: 5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Теперь рассмотрим нелокальные переменные. Как ранее упоминалось, переменные применяются во вложенных функциях, область видимости которых не ограничена локальной. Это означает, что переменная необязательно находится в области видимости локальной функции или в глобальной области.</p>
+<p>Пример работы с нелокальной переменной в Python с использованием ключевого слова nonlocal:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">outer</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+
+    <span class="k">def</span> <span class="nf">inner</span><span class="p">():</span>
+        <span class="k">nonlocal</span> <span class="n">x</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Inner:&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="n">inner</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Outer:&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">outer</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inner: 20
+Outer: 20
+</pre></div>
+</div>
+</div>
+</div>
+<p>Здесь ключевое слово <code class="docutils literal notranslate"><span class="pre">nonlocal</span></code> позволяет изменить значение переменной <code class="docutils literal notranslate"><span class="pre">x</span></code> из внутренней функции <code class="docutils literal notranslate"><span class="pre">inner()</span></code>. После вызова внешней функции <code class="docutils literal notranslate"><span class="pre">outer()</span></code> значение переменной <code class="docutils literal notranslate"><span class="pre">x</span></code> изменилось на 20 как внутри функции <code class="docutils literal notranslate"><span class="pre">inner()</span></code>, так и снаружи, в функции <code class="docutils literal notranslate"><span class="pre">outer()</span></code>.</p>
+<p>И последнее, это встроенные переменные. В Python существует встроенное переменные или функции, которые всегда доступны при работе в этом языке программирования. Вот примеры объектов, которые можно найти во встроенном пространстве имен:</p>
+<ul class="simple">
+<li><p>Встроенные функции, такие как <code class="docutils literal notranslate"><span class="pre">max()</span></code> для нахождения максимального элемента в коллекции и <code class="docutils literal notranslate"><span class="pre">len()</span></code> для определения длины объекта и так далее.</p></li>
+<li><p>Типы объектов, такие как <code class="docutils literal notranslate"><span class="pre">int</span></code> (целые числа) и <code class="docutils literal notranslate"><span class="pre">str</span></code> (строки).</p></li>
+</ul>
+<p>Чтобы ознакомиться со всем списком встроенные переменных или функций, выполни команду, которая выводит все встроенные :</p>
+<div class="cell tag_&quot;scroll-output&quot; docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">__builtins__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;ArithmeticError&#39;,
+ &#39;AssertionError&#39;,
+ &#39;AttributeError&#39;,
+ &#39;BaseException&#39;,
+ &#39;BaseExceptionGroup&#39;,
+ &#39;BlockingIOError&#39;,
+ &#39;BrokenPipeError&#39;,
+ &#39;BufferError&#39;,
+ &#39;BytesWarning&#39;,
+ &#39;ChildProcessError&#39;,
+ &#39;ConnectionAbortedError&#39;,
+ &#39;ConnectionError&#39;,
+ &#39;ConnectionRefusedError&#39;,
+ &#39;ConnectionResetError&#39;,
+ &#39;DeprecationWarning&#39;,
+ &#39;EOFError&#39;,
+ &#39;Ellipsis&#39;,
+ &#39;EncodingWarning&#39;,
+ &#39;EnvironmentError&#39;,
+ &#39;Exception&#39;,
+ &#39;ExceptionGroup&#39;,
+ &#39;False&#39;,
+ &#39;FileExistsError&#39;,
+ &#39;FileNotFoundError&#39;,
+ &#39;FloatingPointError&#39;,
+ &#39;FutureWarning&#39;,
+ &#39;GeneratorExit&#39;,
+ &#39;IOError&#39;,
+ &#39;ImportError&#39;,
+ &#39;ImportWarning&#39;,
+ &#39;IndentationError&#39;,
+ &#39;IndexError&#39;,
+ &#39;InterruptedError&#39;,
+ &#39;IsADirectoryError&#39;,
+ &#39;KeyError&#39;,
+ &#39;KeyboardInterrupt&#39;,
+ &#39;LookupError&#39;,
+ &#39;MemoryError&#39;,
+ &#39;ModuleNotFoundError&#39;,
+ &#39;NameError&#39;,
+ &#39;None&#39;,
+ &#39;NotADirectoryError&#39;,
+ &#39;NotImplemented&#39;,
+ &#39;NotImplementedError&#39;,
+ &#39;OSError&#39;,
+ &#39;OverflowError&#39;,
+ &#39;PendingDeprecationWarning&#39;,
+ &#39;PermissionError&#39;,
+ &#39;ProcessLookupError&#39;,
+ &#39;RecursionError&#39;,
+ &#39;ReferenceError&#39;,
+ &#39;ResourceWarning&#39;,
+ &#39;RuntimeError&#39;,
+ &#39;RuntimeWarning&#39;,
+ &#39;StopAsyncIteration&#39;,
+ &#39;StopIteration&#39;,
+ &#39;SyntaxError&#39;,
+ &#39;SyntaxWarning&#39;,
+ &#39;SystemError&#39;,
+ &#39;SystemExit&#39;,
+ &#39;TabError&#39;,
+ &#39;TimeoutError&#39;,
+ &#39;True&#39;,
+ &#39;TypeError&#39;,
+ &#39;UnboundLocalError&#39;,
+ &#39;UnicodeDecodeError&#39;,
+ &#39;UnicodeEncodeError&#39;,
+ &#39;UnicodeError&#39;,
+ &#39;UnicodeTranslateError&#39;,
+ &#39;UnicodeWarning&#39;,
+ &#39;UserWarning&#39;,
+ &#39;ValueError&#39;,
+ &#39;Warning&#39;,
+ &#39;ZeroDivisionError&#39;,
+ &#39;__IPYTHON__&#39;,
+ &#39;__build_class__&#39;,
+ &#39;__debug__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__import__&#39;,
+ &#39;__loader__&#39;,
+ &#39;__name__&#39;,
+ &#39;__package__&#39;,
+ &#39;__spec__&#39;,
+ &#39;abs&#39;,
+ &#39;aiter&#39;,
+ &#39;all&#39;,
+ &#39;anext&#39;,
+ &#39;any&#39;,
+ &#39;ascii&#39;,
+ &#39;bin&#39;,
+ &#39;bool&#39;,
+ &#39;breakpoint&#39;,
+ &#39;bytearray&#39;,
+ &#39;bytes&#39;,
+ &#39;callable&#39;,
+ &#39;chr&#39;,
+ &#39;classmethod&#39;,
+ &#39;compile&#39;,
+ &#39;complex&#39;,
+ &#39;copyright&#39;,
+ &#39;credits&#39;,
+ &#39;delattr&#39;,
+ &#39;dict&#39;,
+ &#39;dir&#39;,
+ &#39;display&#39;,
+ &#39;divmod&#39;,
+ &#39;enumerate&#39;,
+ &#39;eval&#39;,
+ &#39;exec&#39;,
+ &#39;execfile&#39;,
+ &#39;filter&#39;,
+ &#39;float&#39;,
+ &#39;format&#39;,
+ &#39;frozenset&#39;,
+ &#39;get_ipython&#39;,
+ &#39;getattr&#39;,
+ &#39;globals&#39;,
+ &#39;hasattr&#39;,
+ &#39;hash&#39;,
+ &#39;help&#39;,
+ &#39;hex&#39;,
+ &#39;id&#39;,
+ &#39;input&#39;,
+ &#39;int&#39;,
+ &#39;isinstance&#39;,
+ &#39;issubclass&#39;,
+ &#39;iter&#39;,
+ &#39;len&#39;,
+ &#39;license&#39;,
+ &#39;list&#39;,
+ &#39;locals&#39;,
+ &#39;map&#39;,
+ &#39;max&#39;,
+ &#39;memoryview&#39;,
+ &#39;min&#39;,
+ &#39;next&#39;,
+ &#39;object&#39;,
+ &#39;oct&#39;,
+ &#39;open&#39;,
+ &#39;ord&#39;,
+ &#39;pow&#39;,
+ &#39;print&#39;,
+ &#39;property&#39;,
+ &#39;range&#39;,
+ &#39;repr&#39;,
+ &#39;reversed&#39;,
+ &#39;round&#39;,
+ &#39;runfile&#39;,
+ &#39;set&#39;,
+ &#39;setattr&#39;,
+ &#39;slice&#39;,
+ &#39;sorted&#39;,
+ &#39;staticmethod&#39;,
+ &#39;str&#39;,
+ &#39;sum&#39;,
+ &#39;super&#39;,
+ &#39;tuple&#39;,
+ &#39;type&#39;,
+ &#39;vars&#39;,
+ &#39;zip&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="args-kwargs">
+<h1>Параметры с оператором распаковки <code class="docutils literal notranslate"><span class="pre">**args</span></code> и <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code><a class="headerlink" href="#args-kwargs" title="Link to this heading">#</a></h1>
+<p>Как ты думаешь, есть ли ограничения на количество аргументов в функции? Если твой ответ нет, ты прав. За неограниченность отвечают операторы <code class="docutils literal notranslate"><span class="pre">*args</span></code> (сокращение от arguments) и <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> (keyword arguments).</p>
+<p>Они представляют собой механизм распаковки, который позволяет извлекать элементы из контейнера, такого как кортеж или список, и передавать их как отдельные аргументы функции. Например, если у тебя есть кортеж с аргументами, распаковка <code class="docutils literal notranslate"><span class="pre">*args</span></code> позволит передать каждый элемент кортежа как отдельный аргумент в функцию. Аналогично, <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> позволяет работать с аргументами по ключу, что делает код более гибким и удобным для использования.</p>
+<p>Таким образом, <code class="docutils literal notranslate"><span class="pre">*args</span></code> и <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> позволяют создавать функции, способные работать с различным количеством аргументов и ключей, что делает код более динамичным и адаптивным к различным сценариям использования.</p>
+<section id="args">
+<h2><code class="docutils literal notranslate"><span class="pre">*args</span></code><a class="headerlink" href="#args" title="Link to this heading">#</a></h2>
+<p>Предположим, у нас есть функция, которая вычисляет среднее арифметическое двух чисел:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="c1"># передадим функции mean числа 3 и 6</span>
+<span class="n">mean</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Окей, но что, если нужно передать больше двух чисел? Решением будет объяление функции, которая сразу примет список в качестве аргумента:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Функция для расчета среднего значения чисел из списка</span>
+<span class="k">def</span> <span class="nf">calculate_mean</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Переменная для хранения суммы чисел из списка</span>
+
+    <span class="c1"># Считаем сумму чисел из списка</span>
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">num</span>
+
+    <span class="c1"># Рассчитываем среднее значение</span>
+    <span class="n">mean_value</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mean_value</span>
+
+<span class="c1"># Создаем список чисел</span>
+<span class="n">numbers_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+
+<span class="c1"># Вызываем функцию для расчета среднего значения</span>
+<span class="n">result_mean</span> <span class="o">=</span> <span class="n">calculate_mean</span><span class="p">(</span><span class="n">numbers_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Среднее значение чисел из списка: </span><span class="si">{</span><span class="n">result_mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Среднее значение чисел из списка: 30.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Окей, у нас есть пример функции, которая работает с переданным списком чисел. Но если попытаться передать отдельные числа, функция выдаст ошибку.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">calculate_mean</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">37</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">calculate_mean</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+
+<span class="ne">TypeError</span>: calculate_mean() takes 1 positional argument but 2 were given
+</pre></div>
+</div>
+</div>
+</div>
+<p>В таком случае функция не сможет обработать отдельные числа, так как она ожидает получить список в качестве аргумента.</p>
+<p>А теперь мы добрались до самого оператора  <code class="docutils literal notranslate"><span class="pre">*args</span></code>, которыйм позволяет передавать функции произвольное количество отдельных чисел.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_mean</span><span class="p">(</span><span class="o">*</span><span class="n">numbers</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">num</span>
+
+    <span class="n">mean_value</span> <span class="o">=</span> <span class="n">total</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mean_value</span>
+
+<span class="c1"># Вызов функции с несколькими аргументами</span>
+<span class="n">result_mean</span> <span class="o">=</span> <span class="n">calculate_mean</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Среднее значение чисел: </span><span class="si">{</span><span class="n">result_mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Среднее значение чисел: 2.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>В этом примере мы используем <code class="docutils literal notranslate"><span class="pre">*args</span></code> для передачи произвольного количества чисел в функцию <code class="docutils literal notranslate"><span class="pre">calculate_mean</span></code>. Оператор * позволяет функции принимать любое количество чисел и формирует из них кортеж, который затем используется внутри функции для расчёта среднего значения.</p>
+<p>Также мы можем передать функции список чисел, используя оператор *:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Передача списка в функцию с помощью *</span>
+<span class="n">numbers_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">result_mean</span> <span class="o">=</span> <span class="n">calculate_mean</span><span class="p">(</span><span class="o">*</span><span class="n">numbers_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Среднее значение чисел из списка: </span><span class="si">{</span><span class="n">result_mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Среднее значение чисел из списка: 2.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>В данном случае мы передаем список <code class="docutils literal notranslate"><span class="pre">numbers_list</span></code> с помощью оператора *, который разворачивает список в отдельные числа и передаёт их в функцию для расчёта среднего значения.</p>
+<p>Ещё один пример. В функции <code class="docutils literal notranslate"><span class="pre">test_type</span></code>, использующей <code class="docutils literal notranslate"><span class="pre">*args</span></code>, мы можем увидеть, как числа преобразуются в кортеж:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Функция для демонстрации преобразования чисел в кортеж с помощью *args</span>
+<span class="k">def</span> <span class="nf">test_type</span><span class="p">(</span><span class="o">*</span><span class="n">nums</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">nums</span><span class="p">))</span>
+
+<span class="c1"># Вызов функции с несколькими аргументами</span>
+<span class="n">test_type</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, 3, 4) &lt;class &#39;tuple&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>При вызове функции <code class="docutils literal notranslate"><span class="pre">test_type</span></code> с разными аргументами мы получаем кортеж чисел и их тип данных.</p>
+<p>Так <code class="docutils literal notranslate"><span class="pre">*args</span></code> работает с произвольным количеством аргументов в функциях Python.</p>
+</section>
+<section id="kwargs">
+<h2><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code><a class="headerlink" href="#kwargs" title="Link to this heading">#</a></h2>
+<p>Оператор <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> позволяет передавать функции переменное количество аргументов и обрабатывать их в виде словаря, а не списка, как это делает <code class="docutils literal notranslate"><span class="pre">*args</span></code>.</p>
+<p>Простой пример. Функция ниже принимает именованные аргументы и возвращает их в виде словаря:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">example_function</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+
+<span class="c1"># Передадим несколько именованных аргументов</span>
+<span class="n">example_function</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_items([(&#39;a&#39;, 1), (&#39;b&#39;, 2), (&#39;c&#39;, 3)])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Результатом вызова этой функции будет словарь с переданными аргументами:
+<code class="docutils literal notranslate"><span class="pre">dict_items([('a',</span> <span class="pre">1),</span> <span class="pre">('b',</span> <span class="pre">2),</span> <span class="pre">('c',</span> <span class="pre">3)])</span></code></p>
+<p>Более сложный пример. Представь, что тебе нужно написать функцию, которая принимает произвольное количество чисел  в качестве позиционных аргументов, а также именованные аргументы для вычисления различных статистических показателей.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_statistics</span><span class="p">(</span><span class="o">*</span><span class="n">numbers</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;mean&#39;</span> <span class="ow">in</span> <span class="n">options</span> <span class="ow">and</span> <span class="n">options</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]:</span>
+        <span class="n">mean</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean: </span><span class="si">{</span><span class="n">mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s1">&#39;std&#39;</span> <span class="ow">in</span> <span class="n">options</span> <span class="ow">and</span> <span class="n">options</span><span class="p">[</span><span class="s1">&#39;std&#39;</span><span class="p">]:</span>
+        <span class="n">variance</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="nb">sum</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+        <span class="n">std_deviation</span> <span class="o">=</span> <span class="n">variance</span> <span class="o">**</span> <span class="mf">0.5</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Standard deviation: </span><span class="si">{</span><span class="n">std_deviation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s1">&#39;median&#39;</span> <span class="ow">in</span> <span class="n">options</span> <span class="ow">and</span> <span class="n">options</span><span class="p">[</span><span class="s1">&#39;median&#39;</span><span class="p">]:</span>
+        <span class="n">sorted_numbers</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sorted_numbers</span><span class="p">)</span>
+        <span class="n">median</span> <span class="o">=</span> <span class="p">(</span><span class="n">sorted_numbers</span><span class="p">[</span><span class="n">n</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">sorted_numbers</span><span class="p">[(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Median: </span><span class="si">{</span><span class="n">median</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Вызовем функцию с указанием необходимых статистических показателей</span>
+<span class="n">calculate_statistics</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">median</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean: 12.5
+Standard deviation: 5.5901699437494745
+Median: 12.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>В данном примере функции передано несколько чисел в качестве позиционных аргументов, а также указаны именованные аргументы для вычисления среднего, стандартного отклонения и медианы.</p>
+<p>Для передачи чисел и параметров вывода метрик мы можем также использовать списки и словари вместо прямой передачи значений. Это делает код более гибким и позволяет легко изменять параметры при вызове функции.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+
+<span class="n">calculate_statistics</span><span class="p">(</span><span class="o">*</span><span class="n">numbers</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean: 12.5
+Standard deviation: 5.5901699437494745
+Median: 12.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Здесь мы передаём числа и настройки метрик через списки и словари с использованием операторов распаковки * и ** соответственно. Это позволяет более гибко управлять параметрами функции, подобно тому, как можно использовать разные детали для создания разнообразных изделий.</p>
+<p>Аналогичным выводу в предыдущем примере.</p>
+<p>В заключение, стоит отметить, что использование <code class="docutils literal notranslate"><span class="pre">*args</span></code> и <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> делает код более гибким и удобным для работы с различными типами данных и аргументами. Эти операторы часто используются в более сложных конструкциях, таких как декораторы, что делает их незаменимыми инструментами для опытных Python-разработчиков.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id9">
+<h1>Заключение<a class="headerlink" href="#id9" title="Link to this heading">#</a></h1>
+<p>Теперь ты придёшь на лекцию с базой знаний о том:</p>
+<ul class="simple">
+<li><p>что такое функции в Python и как они выглядят;</p></li>
+<li><p>какие бывают встроенные и собственные функции и какие у них параметры и аргументы;</p></li>
+<li><p>как работает пустая функция;</p></li>
+<li><p>чем отличаются глобальные и локальные переменные;</p></li>
+<li><p>и как распаковаывать большое количество аргументов в функции.</p></li>
+</ul>
+<p>Поздравляю! После завершения урока ты сможешь создавать собственные функции, объединяя большие блоки кода под одним названием функции. Это даст тебе возможность структурировать свой код более эффективно, делать его более понятным и легко управляемым. Приобретённые знания станут основой для более продвинутых тем и возможностей программирования, открывая перед тобой бесконечные возможности для творчества и развития в мире Python.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "maximkeremet/tinkoff-python-course",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./01_python_101"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="04_loops.html"
+       title="предыдущая страница">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">назад</p>
+        <p class="prev-next-title">Циклы в Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="06_installing_ide_tools.html"
+       title="следующая страница">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">вперёд</p>
+        <p class="prev-next-title">Устанавливаем IDE</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Содержание
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Функции в Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Функции в Python: введение и основы</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Встроенные функции</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Параметры и аргументы функции</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Собственные функции в Python</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Пустое тело функции</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#print-return">Функция <code class="docutils literal notranslate"><span class="pre">print()</span></code> вместо/с оператором <code class="docutils literal notranslate"><span class="pre">return</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Определение параметров в пользовательских функциях</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Результат выполнения функции</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Виды переменных</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#args-kwargs">Параметры с оператором распаковки <code class="docutils literal notranslate"><span class="pre">**args</span></code> и <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#args"><code class="docutils literal notranslate"><span class="pre">*args</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kwargs"><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Заключение</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1388 @@
+
+<!DOCTYPE html>
+
+
+<html lang="ru" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Концепция объектно-ориентированного программирования (ООП) в Python &#8212; Data разработка на Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=576a2c22"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../_static/translations.js?v=29b1f277"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_python_101/08_oop';</script>
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="prev" title="Виртуальные окружения в Python и управление зависимостями с помощью Poetry." href="07_virtualenv_and_poetry.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="ru"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Перейти к основному содержанию</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo2.svg" class="logo__image only-light" alt="Data разработка на Python - Home"/>
+    <script>document.write(`<img src="../_static/logo2.svg" class="logo__image only-dark" alt="Data разработка на Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Поиск" aria-label="Поиск" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Поиск</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Приветствие курса
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Python 101</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_interpreter.html">Об интерпретаторе Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_data_structures_basic.html">Базовые типы данных</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="02_data_structures_complex.html">Составные структуры данных в Python</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="03_conditional_statements.html">Условные конструкции</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="04_loops.html">Циклы в Python</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="05_functions.html">Функции в Python</a></li>
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_installing_ide_tools.html">Устанавливаем IDE</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="07_virtualenv_and_poetry.html">Виртуальные окружения в Python и управление зависимостями с помощью Poetry</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Концепция объектно-ориентированного программирования (ООП) в Python</a></li>
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/maximkeremet/tinkoff-python-course/blob/main/book/01_python_101/08_oop.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/maximkeremet/tinkoff-python-course/edit/main/book/01_python_101/08_oop.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/maximkeremet/tinkoff-python-course/issues/new?title=Issue%20on%20page%20%2F01_python_101/08_oop.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Открыть вопрос"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Загрузите эту страницу">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/01_python_101/08_oop.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Скачать исходный файл"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Распечатать в PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Полноэкранный режим"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="светлая/темная" aria-label="светлая/темная" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Поиск" aria-label="Поиск" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Концепция объектно-ориентированного программирования (ООП) в Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Содержание </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Концепция объектно-ориентированного программирования (ООП) в Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Абстракция</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Создание объектов: введение в синтаксис</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Самопроверка</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#init">Инициализация объектов: введение в метод <strong>init</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Экземпляры классов: работа с объектами</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Объектно-ориентированный подход</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Самопроверка</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Заключение</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="python">
+<h1>Концепция объектно-ориентированного программирования (ООП) в Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h1>
+<p>Цели материала:</p>
+<ul class="simple">
+<li><p>Разобрать абстракции в программировании.</p></li>
+<li><p>Изучить синтаксис классов в Python.</p></li>
+<li><p>Познакомиться с работой методов класса.</p></li>
+<li><p>Познакомиться с практическим подходом к созданию экземпляров классов.</p></li>
+<li><p>Изучить связи классов и объектов в Python.</p></li>
+<li><p>Перейти к ООП.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Абстракция<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>Итак, что же такое абстракция?</p>
+<p>В программировании абстракция — представление объекта с его ключевыми характеристиками и поведением, которые необходимы для работы в определённой системе. Другими словами, это как фильтр: мы оставляем только те данные, которые нужны для нашей задачи, и отбрасываем ненужные.</p>
+<p><strong>Элементы абстракции</strong></p>
+<p>В абстракциях выделяют два основных элемента: поля и методы.</p>
+<ul class="simple">
+<li><p>Поля — это свойства объекта, такие как его характеристики или состояние. Например, если речь о самолете, его поля могут включать производителя, год выпуска, модель и количество мест.</p></li>
+<li><p>Методы — это действия, которые объект может выполнить или которые можно выполнить над ним. Например, у самолета может быть метод «взлететь», а у билета — «зарегистрировать».</p></li>
+</ul>
+<p>Зачем нужна абстракция? Она позволяет фокусироваться только на важных аспектах объектов, игнорируя всё остальное. Это упрощает разработку и понимание кода, делает его более модульным и гибким.</p>
+<p>Попробуй создать абстракции для информационной системы банка и службы доставки:</p>
+<ul class="simple">
+<li><p>Банк: поля — данные о клиентах и счетах, методы для переводов или проверки баланса.</p></li>
+<li><p>Служба доставки: поля, связанные с заказами и адресами доставки, методы для отслеживания статуса заказа и его обработки.</p></li>
+</ul>
+<p>Примечание. Помни, что абстракция должна быть логичной и понятной для дальнейшего использования в программировании. Старайся выбирать наиболее релевантные поля и методы, которые соответствуют функциональности банка и службы доставки.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Банк</span>
+<span class="c1"># Тут твой текст</span>
+
+<span class="c1"># Служба доставки</span>
+<span class="c1"># Тут твой текст</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>Создание объектов: введение в синтаксис<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<p>Теперь, когда разобрались с абстракциями, перейдём к практической стороне вопроса.</p>
+<p>Если абстракция — это печенька со своими полями и методами, то класс можно сравнить с формой для печеньки. Форма определяет структуру будущего объекта, а с её помощью мы можем создавать столько печенек, сколько нужно. Как их создать? Просто сделай форму и используй её.</p>
+<p>Пример:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Plane</span><span class="p">:</span> <span class="c1"># class - ключевое слово, Plane - название класса</span>
+    <span class="k">def</span> <span class="nf">takes_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="c1"># Метод. Первый аргумент таких функций (=методов) self, это связано с тем, что экземпляров класса может быть несколько, а вот функции внутри класса должны работать с конкретной задачей</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Взлетает&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">changes_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Меняет направление&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">lands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Приземляется&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Обрати внимание, что класс создан с большой буквы. Это продиктовано правилами PEP8 и является стандартом стиля кода для языка Python. Такое правило установили, чтобы код был более читаемым и понятным для других разработчиков. Например, оно позволяет отличить класс от переменной.</p>
+<p>Когда класс создан, нужно создать экземпляр. Вот как это сделать:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plane</span> <span class="o">=</span> <span class="n">Plane</span><span class="p">()</span> <span class="c1"># Создание экземпляра класса</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Кстати, если выполнить эту функцию, станет видно, какого типа переменная:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">plane</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>__main__.Plane
+</pre></div>
+</div>
+</div>
+</div>
+<p>В данном случае, это будет <code class="docutils literal notranslate"><span class="pre">__main__.Plane</span></code>, где <code class="docutils literal notranslate"><span class="pre">__main__</span> </code>и два подчеркивания указывают на то, что мы находимся в основном модуле нашей программы, а <code class="docutils literal notranslate"><span class="pre">Plane</span></code> — это класс. И да, совокупность названия модуля и класса <code class="docutils literal notranslate"><span class="pre">__main__.Plane</span></code> является типом данных.</p>
+<p>Теперь у нас есть переменная plane, которая может вызывать методы класса, такие как <code class="docutils literal notranslate"><span class="pre">takes_off()</span></code>, или любые другие методы, определённые в созданном классе.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plane</span><span class="o">.</span><span class="n">takes_off</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Взлетает
+</pre></div>
+</div>
+</div>
+</div>
+<p>После того, как экземпляр объявлен, вызовем методы, как вызываем методы у строки или словаря — просто через точку и со скобками.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Plane</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">takes_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Взлетает&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">changes_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Меняет направление&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">lands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Приземляется&#39;</span><span class="p">)</span>
+
+<span class="c1"># Мы создали несколько переменных</span>
+<span class="n">plane</span> <span class="o">=</span> <span class="n">Plane</span><span class="p">()</span>
+<span class="n">plane_1</span> <span class="o">=</span> <span class="n">Plane</span><span class="p">()</span>
+<span class="n">plane_2</span> <span class="o">=</span> <span class="n">Plane</span><span class="p">()</span>
+<span class="n">plane_3</span> <span class="o">=</span> <span class="n">Plane</span><span class="p">()</span>
+
+<span class="c1"># И у каждого из них будем вызывать методы и они будут работать независимо друг от друга.</span>
+<span class="c1"># Они работают как разных переменных</span>
+<span class="n">plane</span><span class="o">.</span><span class="n">takes_off</span><span class="p">()</span>
+<span class="n">plane_1</span><span class="o">.</span><span class="n">changes_direction</span><span class="p">()</span>
+<span class="n">plane_2</span><span class="o">.</span><span class="n">lands</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Взлетает
+Меняет направление
+Приземляется
+</pre></div>
+</div>
+</div>
+</div>
+<p>Теперь можно вызывать много методов подряд! Целый эпизод может получиться.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Plane</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">takes_off</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Взлетает&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">changes_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Меняет направление&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">lands</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Приземляется&#39;</span><span class="p">)</span>
+
+<span class="n">plane</span> <span class="o">=</span> <span class="n">Plane</span><span class="p">()</span>
+
+<span class="n">plane</span><span class="o">.</span><span class="n">takes_off</span><span class="p">()</span>
+<span class="n">plane</span><span class="o">.</span><span class="n">changes_direction</span><span class="p">()</span>
+<span class="n">plane</span><span class="o">.</span><span class="n">changes_direction</span><span class="p">()</span>
+<span class="n">plane</span><span class="o">.</span><span class="n">changes_direction</span><span class="p">()</span>
+<span class="n">plane</span><span class="o">.</span><span class="n">lands</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Взлетает
+Меняет направление
+Меняет направление
+Меняет направление
+Приземляется
+</pre></div>
+</div>
+</div>
+</div>
+<p>Задача. Нужно создать класс Employee, у которого есть три метода:</p>
+<ul class="simple">
+<li><p>introduce: — должен выводить на экран сообщение «Привет! Меня зовут {name} и я только начал изучать ООП».</p></li>
+<li><p>work: — должен выводить на экран сообщение «Прилагаю усилия к тому, чтобы понять как работает ООП».</p></li>
+<li><p>thanks: — должен выводить на экран сообщение «Благодарю за внимание».
+После того как класс будет создан, создай экземпляр класса и вызови по очереди все три метода.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Твой код</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h2>Самопроверка<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ответ</span>
+<span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">introduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Введите ваше имя: &quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Привет! Меня зовут </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> и я только начал изучать ООП&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Прилагаю усилия к тому, чтобы понять как работает ООП&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">thanks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Благодарю за внимание!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Создание экземпляра класса</span>
+<span class="n">employee1</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">()</span>
+
+<span class="c1"># Вызов методов по очереди</span>
+<span class="n">employee1</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span>
+<span class="n">employee1</span><span class="o">.</span><span class="n">work</span><span class="p">()</span>
+<span class="n">employee1</span><span class="o">.</span><span class="n">thanks</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">17</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">employee1</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="c1"># Вызов методов по очереди</span>
+<span class="ne">---&gt; </span><span class="mi">17</span> <span class="n">employee1</span><span class="o">.</span><span class="n">introduce</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="n">employee1</span><span class="o">.</span><span class="n">work</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="n">employee1</span><span class="o">.</span><span class="n">thanks</span><span class="p">()</span>
+
+<span class="nn">Cell In[9], line 4,</span> in <span class="ni">Employee.introduce</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="k">def</span> <span class="nf">introduce</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">4</span>     <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Введите ваше имя: &quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Привет! Меня зовут </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> и я только начал изучать ООП&quot;</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/site-packages/ipykernel/kernelbase.py:1281,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1279</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1280</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1281</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1282</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1283</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1284</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">1285</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1286</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1287</span> <span class="p">)</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="init">
+<h1>Инициализация объектов: введение в метод <strong>init</strong><a class="headerlink" href="#init" title="Link to this heading">#</a></h1>
+<p>При работе с классами в Python ты часто будешь сталкиваться с особым методом <strong>init</strong>. Он также известен как «конструктор». Этот метод называют дандер-методом или «магическим», потому что обычно он вызывается не напрямую программистом, а автоматически при создании нового экземпляра класса.</p>
+<p>Разберёмся на примере, как работает инициализация объектов:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hero</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Печенька&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Я&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="n">hero</span> <span class="o">=</span> <span class="n">Hero</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Я Печенька
+</pre></div>
+</div>
+</div>
+</div>
+<p>Что тут происходит? Когда мы создаём экземпляр класса Hero, Python вызывает метод <strong>init</strong> класса Hero, если такой метод существует. Нижние подчеркивания в имени указывают на то, что это дандер-метод.</p>
+<blockquote>
+<div><p>Дандер-методы (англ. dunder methods;  от «double underscore», «двойное подчеркивание») — это термин, используемый в Python для обозначения «магических» методов, которые начинаются и заканчиваются двойным подчеркиванием.</p>
+</div></blockquote>
+<p>Ты уже видел, что в методах класса используется аргумент self. Он представляет собой ссылку на сам экземпляр. Это как обращение к себе. Когда мы говорим «я иду гулять», мы используем слово «я» в отношении себя. В Python self означает «мне» или «себя». Таким образом, <a class="reference external" href="http://self.name">self.name</a> означает «моё имя теперь будет…».</p>
+<p>Теперь улучшим класс, чтобы можно было передавать имя при создании экземпляра:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hero</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Я&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># Теперь создание экземпляров выглядит немного иначе. Мы передаем аргумент при вызове инициализатора</span>
+<span class="n">hero_1</span> <span class="o">=</span> <span class="n">Hero</span><span class="p">(</span><span class="s2">&quot;Печений&quot;</span><span class="p">)</span>
+<span class="n">hero_2</span> <span class="o">=</span> <span class="n">Hero</span><span class="p">(</span><span class="s2">&quot;Печека&quot;</span><span class="p">)</span>
+<span class="n">hero_3</span> <span class="o">=</span> <span class="n">Hero</span><span class="p">(</span><span class="s2">&quot;Клюква&quot;</span><span class="p">)</span>
+
+<span class="c1"># Далее мы можем обращаться к свойству name экземпляров так же, как делали это с self.name внутри класса</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hero_1</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hero_2</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hero_3</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Я Печений
+Я Печека
+Я Клюква
+Печений
+Печека
+Клюква
+</pre></div>
+</div>
+</div>
+</div>
+<p>Теперь каждый раз, когда создаём экземпляр класса Hero, мы можем указать его имя, а оно будет использоваться при инициализации объекта.</p>
+<p>Посмотрим на различные варианты реализации инициализации.</p>
+<p>Инициализация с несколькими свойствами:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hero</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Я&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;размером&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+<span class="n">hero</span> <span class="o">=</span> <span class="n">Hero</span><span class="p">(</span><span class="s2">&quot;Печенька&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Я Печенька размером 12
+</pre></div>
+</div>
+</div>
+</div>
+<p>В этом примере мы создаём экземпляр класса Hero с двумя свойствами name и size. Мы передаём оба значения при создании экземпляра, и они используются для инициализации соответствующих свойств.</p>
+<p>Свойства, установленные через self, мы можем получить напрямую у объекта.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hero</span><span class="p">:</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Я&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;размером&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+<span class="n">hero</span> <span class="o">=</span> <span class="n">Hero</span><span class="p">(</span><span class="s2">&quot;клюква&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># Получаем напрямую у объекта</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hero</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hero</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Я клюква размером 7
+клюква
+7
+</pre></div>
+</div>
+</div>
+</div>
+<p>Изменение свойств объекта:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hero</span><span class="p">:</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Я&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;размером&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+<span class="n">hero</span> <span class="o">=</span> <span class="n">Hero</span><span class="p">(</span><span class="s2">&quot;клюква&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="c1"># Мы можем обновлять значения аргументов, как это показано ниже:</span>
+<span class="n">hero</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;изюмий&quot;</span>
+<span class="n">hero</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mi">3</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hero</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hero</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Я клюква размером 7
+изюмий
+3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Мы также можем обновлять значения свойств объекта, как в примере выше.</p>
+<p>Добавление методов к классу:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hero</span><span class="p">:</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Я&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;размером&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+  <span class="c1"># Добавляем дополнительные методы к классу</span>
+  <span class="k">def</span> <span class="nf">go_right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;идет направо&quot;</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">go_left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;идет налево&quot;</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">observe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;осматривается&quot;</span><span class="p">)</span>
+
+<span class="n">hero</span> <span class="o">=</span> <span class="n">Hero</span><span class="p">(</span><span class="s2">&quot;Печенька&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="n">hero</span><span class="o">.</span><span class="n">go_right</span><span class="p">()</span>
+<span class="n">hero</span><span class="o">.</span><span class="n">go_left</span><span class="p">()</span>
+<span class="n">hero</span><span class="o">.</span><span class="n">observe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Я Печенька размером 6
+Печенька идет направо
+Печенька идет налево
+Печенька осматривается
+</pre></div>
+</div>
+</div>
+</div>
+<p>Мы можем добавить к классу методы, которые позволят объекту выполнять определённые действия.</p>
+<p>Помимо всего прочего, мы можем указывать более сложные вещи, например:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Hero</span><span class="p">:</span>
+    <span class="c1"># Создаём метод как обычно с несколькими аргументами</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">skills</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">skills</span> <span class="o">=</span> <span class="n">skills</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Привет, я </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">, и у меня есть следующие навыки: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">skills</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Создаём метод, который будет обходимть в цикле все вещи, которые есть у нас и покажет через print()</span>
+    <span class="k">def</span> <span class="nf">showcase_skills</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> владеет следующими навыками:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">skill</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">skills</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">skill</span><span class="p">)</span>
+
+<span class="c1"># Создаём экземпляр класса Hero - программиста</span>
+<span class="n">hero_programmer</span> <span class="o">=</span> <span class="n">Hero</span><span class="p">(</span><span class="s2">&quot;Python Master&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Python&quot;</span><span class="p">,</span> <span class="s2">&quot;ООП&quot;</span><span class="p">,</span> <span class="s2">&quot;SQL&quot;</span><span class="p">])</span>
+
+<span class="c1"># Вызываем метод showcase_skills для отображения навыков героя-программиста</span>
+<span class="n">hero_programmer</span><span class="o">.</span><span class="n">showcase_skills</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Привет, я Python Master, и у меня есть следующие навыки: [&#39;Python&#39;, &#39;ООП&#39;, &#39;SQL&#39;]
+Python Master владеет следующими навыками:
+Python
+ООП
+SQL
+</pre></div>
+</div>
+</div>
+</div>
+<p>В примере выше видно, что можно инициализировать объекты с более сложными структурами данных, такими как списки или словари. Также можно добавлять методы, которые могут обрабатывать и использовать эти данные.</p>
+<p>Ты изучил, как создавать пользовательские классы и экземпляры. А теперь небольшой секрет: при создании пользовательских классов и экземпляров важно осознать, что стандартные типы данных в Python, такие как int, float, str, list, bool, dict, на самом деле являются классами.</p>
+<p>Когда мы говорим о переменной типа int или объекте типа int, мы фактически имеем дело с экземпляром класса int. Например, когда используем функцию преобразования типов, такую как int(«11»), мы вызываем инициализатор класса int, в который передается аргумент «11». Этот инициализатор инициализирует новый объект int, присваивая ему значение, переданное в аргументе. Когда выполняем операции с этим объектом, мы создаём новый объект, инициализируя новый экземпляр класса.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id4">
+<h1>Экземпляры классов: работа с объектами<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<p>Ты разобрался, как создавать экземпляры классов. Теперь посмотрим, как с ними работать в различных сценариях.</p>
+<p>Экземпляры классов, или объекты, могут использоваться так же, как и любые другие данные в Python. Их можно создавать, изменять, присваивать переменным, хранить в списках или словарях и манипулировать ими в циклах.</p>
+<p>Инсайт. Важно понимать жизненный цикл экземпляра: создался — использовался — изменился.</p>
+<p>Давай попробуем!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Ticket</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flight</span><span class="p">,</span> <span class="n">class_</span><span class="p">):</span>
+        <span class="c1"># Нельзя использовать переменную class, потому что эта переменна зарезервирована создателями Python</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight</span> <span class="o">=</span> <span class="n">flight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_</span> <span class="o">=</span> <span class="n">class_</span>
+
+    <span class="k">def</span> <span class="nf">print_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># А вот print() -- можно, ведь методы не конфликтуют с функциями!</span>
+        <span class="c1"># За счёт того, что методы привязаны к конкретному классу, например, Ticket</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Билет на рейс </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">flight</span><span class="si">}</span><span class="s2"> в классе </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">class_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">ticket_1</span> <span class="o">=</span> <span class="n">Ticket</span><span class="p">(</span><span class="s2">&quot;SP-101&quot;</span><span class="p">,</span> <span class="s2">&quot;econom&quot;</span><span class="p">)</span>
+<span class="n">ticket_1</span><span class="o">.</span><span class="n">print_info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Билет на рейс SP-101 в классе econom
+</pre></div>
+</div>
+</div>
+</div>
+<p>Мы можем создать экземпляр класса Ticket и вызвать его метод print_info(), который выведет информацию о билете.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Ticket</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flight</span><span class="p">,</span> <span class="n">class_</span><span class="p">):</span>
+        <span class="c1"># Нельзя использовать переменную class, потому что эта переменна зарезервирована создателями Python</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight</span> <span class="o">=</span> <span class="n">flight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_</span> <span class="o">=</span> <span class="n">class_</span>
+
+    <span class="k">def</span> <span class="nf">print_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># А вот print() -- можно, ведь методы не конфликтуют с функциями!</span>
+        <span class="c1"># За счет того, что методы привязаны к конкретному классу, например, Ticket</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Билет на рейс </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">flight</span><span class="si">}</span><span class="s2"> в классе </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">class_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">ticket_1</span> <span class="o">=</span> <span class="n">Ticket</span><span class="p">(</span><span class="s2">&quot;SP-101&quot;</span><span class="p">,</span> <span class="s2">&quot;economy&quot;</span><span class="p">)</span>
+<span class="n">ticket_1</span><span class="o">.</span><span class="n">print_info</span><span class="p">()</span>
+
+<span class="n">ticket_1</span><span class="o">.</span><span class="n">class_</span> <span class="o">=</span> <span class="s1">&#39;business&#39;</span>
+<span class="n">ticket_1</span><span class="o">.</span><span class="n">print_info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Билет на рейс SP-101 в классе economy
+Билет на рейс SP-101 в классе business
+</pre></div>
+</div>
+</div>
+</div>
+<p>Обрати внимание: рейс остался тем же, но класс билета изменился.</p>
+<p>Работая с экземплярами, можно взаимодействовать с другими типами данных. Например, мы можем создать несколько билетов и добавить их в список:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Ticket</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flight</span><span class="p">,</span> <span class="n">class_</span><span class="p">):</span>
+        <span class="c1"># Нельзя использовать переменную class, потому что эта переменна зарезервирована создателями Python</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight</span> <span class="o">=</span> <span class="n">flight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_</span> <span class="o">=</span> <span class="n">class_</span>
+
+    <span class="k">def</span> <span class="nf">print_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># А вот print() -- можно, ведь методы не конфликтуют с функциями!</span>
+        <span class="c1"># За счет того, что методы привязаны к конкретному классу, например, Ticket</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Билет на рейс </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">flight</span><span class="si">}</span><span class="s2"> в классе </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">class_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">ticket_1</span> <span class="o">=</span> <span class="n">Ticket</span><span class="p">(</span><span class="s2">&quot;SP-101&quot;</span><span class="p">,</span> <span class="s2">&quot;econom&quot;</span><span class="p">)</span>
+<span class="n">ticket_2</span> <span class="o">=</span> <span class="n">Ticket</span><span class="p">(</span><span class="s2">&quot;SP-102&quot;</span><span class="p">,</span> <span class="s2">&quot;econom&quot;</span><span class="p">)</span>
+<span class="n">tickets</span> <span class="o">=</span> <span class="p">[</span><span class="n">ticket_1</span><span class="p">,</span> <span class="n">ticket_2</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">ticket</span> <span class="ow">in</span> <span class="n">tickets</span><span class="p">:</span>
+    <span class="n">ticket</span><span class="o">.</span><span class="n">print_info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Билет на рейс SP-101 в классе econom
+Билет на рейс SP-102 в классе econom
+</pre></div>
+</div>
+</div>
+</div>
+<p>Использовать экземпляры можно и в качестве значений в словарях:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Ticket</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flight</span><span class="p">,</span> <span class="n">class_</span><span class="p">):</span>
+        <span class="c1"># Нельзя использовать переменную class, потому что эта переменна зарезервирована создателями Python</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flight</span> <span class="o">=</span> <span class="n">flight</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_</span> <span class="o">=</span> <span class="n">class_</span>
+
+    <span class="k">def</span> <span class="nf">print_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># А вот print() -- можно, ведь методы не конфликтуют с функциями!</span>
+        <span class="c1"># За счет того, что методы привязаны к конкретному классу, например, Ticket</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Билет на рейс </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">flight</span><span class="si">}</span><span class="s2"> в классе </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">class_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">ticket_1</span> <span class="o">=</span> <span class="n">Ticket</span><span class="p">(</span><span class="s2">&quot;SP-101&quot;</span><span class="p">,</span> <span class="s2">&quot;economy&quot;</span><span class="p">)</span>
+<span class="n">ticket_2</span> <span class="o">=</span> <span class="n">Ticket</span><span class="p">(</span><span class="s2">&quot;SP-102&quot;</span><span class="p">,</span> <span class="s2">&quot;economy&quot;</span><span class="p">)</span>
+<span class="n">tickets</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Туда&quot;</span><span class="p">:</span> <span class="n">ticket_1</span><span class="p">,</span> <span class="s2">&quot;Обратно&quot;</span><span class="p">:</span> <span class="n">ticket_2</span><span class="p">}</span>
+
+<span class="n">tickets</span><span class="p">[</span><span class="s2">&quot;Туда&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">print_info</span><span class="p">()</span>
+<span class="n">tickets</span><span class="p">[</span><span class="s2">&quot;Обратно&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">print_info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Билет на рейс SP-101 в классе economy
+Билет на рейс SP-102 в классе economy
+</pre></div>
+</div>
+</div>
+</div>
+<p>Кроме того, объекты классов можно передать в функции или методы других классов для выполнения различных операций или получения информации. Например, можно создать метод в другом классе для обработки билетов:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Flight</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">number</span> <span class="o">=</span> <span class="n">number</span>
+
+    <span class="k">def</span> <span class="nf">process_ticket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticket</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Билет на рейс </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="si">}</span><span class="s2"> обработан: </span><span class="si">{</span><span class="n">ticket</span><span class="o">.</span><span class="n">class_</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">flight</span> <span class="o">=</span> <span class="n">Flight</span><span class="p">(</span><span class="s2">&quot;SP-101&quot;</span><span class="p">)</span>
+<span class="n">flight</span><span class="o">.</span><span class="n">process_ticket</span><span class="p">(</span><span class="n">ticket_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Билет на рейс SP-101 обработан: economy
+</pre></div>
+</div>
+</div>
+</div>
+<p>Это демонстрирует, как объекты одного класса могут взаимодействовать с объектами других классов для выполнения сложных задач.</p>
+<p>Таким образом, экземпляры классов предоставляют гибкую и мощную среду для работы с данными и выполнения операций в вашей программе. Они могут использоваться для моделирования объектов и процессов из реального мира, что делает код более читаемым, понятным и масштабируемым.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id5">
+<h1>Объектно-ориентированный подход<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
+<p>До этого мы использовали абстракции, классы и экземпляры, а теперь настало время познакомиться с объектно-ориентированным программированием (ООП).</p>
+<p>ООП — это подход (он ещё называется парадигмой или стилем) в программировании, при котором мы представляем всё как классы и объекты. Мы стараемся минимизировать использование примитивных типов данных, таких как строки, числа или списки, и максимально работать с экземплярами классов, которые создаём сами.</p>
+<blockquote>
+<div><p>Например, класс «Автомобиль» может описывать характеристики автомобиля, такие как цвет, марка, скорость. Затем мы можем создавать «объекты» этого класса, например, конкретный автомобиль Toyota Corolla с определённым цветом и скоростью. Как итог, программист получает более организованный код благодаря использованию классов и объектов. К тому же такой код легко подерживать и самому программисту, и его коллегами.</p>
+</div></blockquote>
+<p>Если раньше мы писали просто переменные и функции, которые работали самостоятельно в ходе программы, то теперь создаём более крупные сущности, основанные на классах, из которых затем создаются экземпляры.</p>
+<p>До ООП у нас были какие-то переменные и функции:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Какие-то переменные</span>
+<span class="n">student_name</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">student_surname</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">student_course</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="c1"># и функция, которая что-то делает, но мы не знали относиться фукнкция к студенту или нет.</span>
+<span class="k">def</span> <span class="nf">get_grade</span><span class="p">():</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>После ООП у нас появляются объекты, которые хранят собственные свойства и методы:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
+<span class="n">student</span><span class="o">.</span><span class="n">name</span>
+<span class="n">student</span><span class="o">.</span><span class="n">surname</span>
+<span class="n">student</span><span class="o">.</span><span class="n">course</span>
+<span class="n">student</span><span class="o">.</span><span class="n">get_grade</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">23</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">student</span><span class="o">.</span><span class="n">name</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">student</span><span class="o">.</span><span class="n">surname</span>
+
+<span class="ne">NameError</span>: name &#39;Student&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+<p>Перепишем код с использованием ООП. В профессиональной среде сказали бы «отрефакторим» (от англ. refactoring, «изменение кода без изменения его функциональности»).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Код БЕЗ ООП</span>
+<span class="k">def</span> <span class="nf">can_afford</span><span class="p">(</span><span class="n">budget</span><span class="p">,</span> <span class="n">item_price</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">item_price</span> <span class="o">&lt;=</span> <span class="n">budget</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Вы можете это приобрести&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Извините, на вашем счету недостаточно средств&quot;</span><span class="p">)</span>
+
+<span class="c1"># Указываем начальный бюджет</span>
+<span class="n">budget</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># Проверка, можем ли мы позволить себе купить товары с разными ценами</span>
+<span class="n">can_afford</span><span class="p">(</span><span class="n">budget</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>  <span class="c1"># Покупка товара за 50 единиц</span>
+<span class="n">can_afford</span><span class="p">(</span><span class="n">budget</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>  <span class="c1"># Покупка товара за 150 единиц</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Вы можете это приобрести
+Извините, на вашем счету недостаточно средств
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Код с применением ООП</span>
+<span class="k">class</span> <span class="nc">BudgetChecker</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">budget</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">budget</span> <span class="o">=</span> <span class="n">budget</span>
+
+    <span class="k">def</span> <span class="nf">can_afford</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item_price</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">item_price</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">budget</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Вы можете это приобрести&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Извините, на вашем счету недостаточно средств&quot;</span><span class="p">)</span>
+
+<span class="c1"># Создание экземпляра класса с указанием бюджета</span>
+<span class="n">budget_checker</span> <span class="o">=</span> <span class="n">BudgetChecker</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Проверка, можем ли мы позволить себе купить товары с разными ценами</span>
+<span class="n">budget_checker</span><span class="o">.</span><span class="n">can_afford</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># Покупка товара за 50 единиц</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Вы можете это приобрести
+</pre></div>
+</div>
+</div>
+</div>
+<p>Потренируемся на другом примере.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">question_1</span> <span class="o">=</span> <span class="s2">&quot;My name ___ Vova&quot;</span>
+<span class="n">correct_1</span> <span class="o">=</span> <span class="s2">&quot;is&quot;</span>
+
+
+<span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Введите ответ&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">answer</span> <span class="o">==</span> <span class="n">correct_1</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ответ верный&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ответ неверный&quot;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Верный:&quot;</span><span class="p">,</span> <span class="n">correct_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">question_1</span> <span class="o">=</span> <span class="s2">&quot;My name ___ Vova&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">correct_1</span> <span class="o">=</span> <span class="s2">&quot;is&quot;</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Введите ответ&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">if</span> <span class="n">answer</span> <span class="o">==</span> <span class="n">correct_1</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ответ верный&quot;</span><span class="p">)</span>
+
+<span class="nn">File /opt/hostedtoolcache/Python/3.11.9/x64/lib/python3.11/site-packages/ipykernel/kernelbase.py:1281,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1279</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1280</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1281</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1282</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1283</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1284</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">1285</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1286</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1287</span> <span class="p">)</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Перепишим код так, чтобы логика проверки скрывалась в объекте, а код программы был простым. Например таким:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">question_1</span> <span class="o">=</span> <span class="n">Question</span><span class="p">(</span><span class="s2">&quot;My name __ Vova&quot;</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">)</span>
+<span class="n">question_1</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;is&quot;</span><span class="p">)</span>
+<span class="c1"># question_1.check(&quot;are&quot;)</span>
+</pre></div>
+</div>
+<p>Выбираем название для класса Question, а название для полей question, answer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ваш код</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id6">
+<h2>Самопроверка<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Question</span><span class="p">:</span>
+  <span class="k">def</span> <span class="fm">__init__</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="n">question</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">answer</span> <span class="o">=</span> <span class="n">answer</span>
+
+  <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">answer</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">answer</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">answer</span>
+
+<span class="n">question_1</span> <span class="o">=</span> <span class="n">Question</span><span class="p">(</span><span class="s2">&quot;Текст вопроса?&quot;</span><span class="p">,</span> <span class="s2">&quot;правильный ответ&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">question_1</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">question_1</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="s2">&quot;правильный ответ&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Объектно-ориентированный подход позволяет создавать более структурированный и легко читаемый код, разделять его на логически связанные части и повышать его масштабируемость и гибкость.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id7">
+<h1>Заключение<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<p>Теперь ты придёшь на лекцию с базой знаний о том:</p>
+<ul class="simple">
+<li><p>что такое абстракции и как выделять сущности из реального мира и абстрагировать их для использования в программировании;</p></li>
+<li><p>что такое классы, свойства и методы;</p></li>
+<li><p>как рефакторить код в стиле ООП — как преобразить старый код, написанный в процедурном стиле, в объектно-ориентированный код.</p></li>
+</ul>
+<p>Важно осознать, что изучение ООП дает нам инструменты для создания программ, которые не только работают, но и легко модифицируются и масштабируются с ростом требований.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "maximkeremet/tinkoff-python-course",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./01_python_101"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="07_virtualenv_and_poetry.html"
+       title="предыдущая страница">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">назад</p>
+        <p class="prev-next-title">Виртуальные окружения в Python и управление зависимостями с помощью Poetry.</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Содержание
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Концепция объектно-ориентированного программирования (ООП) в Python</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Абстракция</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Создание объектов: введение в синтаксис</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Самопроверка</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#init">Инициализация объектов: введение в метод <strong>init</strong></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Экземпляры классов: работа с объектами</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Объектно-ориентированный подход</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Самопроверка</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Заключение</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
